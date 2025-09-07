@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hazaribagh wildlife sanctuary</title>
+</head>
+<style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Roboto', sans-serif;
+      color: white;
+      background: url('templebg.jpg') no-repeat center center fixed;
+      background-size:cover;
+    }
+
+    /* Navbar */
+    header {
+      background: rgba(0, 0, 0, 0.5);
+      padding: 1rem 0; /* Adjusted padding */
+      position: sticky;
+      top: 0;
+      z-index: 1000; /* Added z-index */
+    }
+
+    nav ul {
+      display: flex;
+      justify-content: center;
+      align-items: center; /* Added align-items */
+      list-style: none;
+      gap: 20px; /* Added gap */
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    nav ul li {
+      margin: 0 10px; /* Adjusted margin */
+    }
+
+    nav ul li a {
+      color: white;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    nav ul li a:hover {
+      color: #90ee90;
+    }
+
+    /* Custom Language Selector Styles */
+    .custom-language-selector {
+      position: relative;
+      display: inline-block;
+      margin-left: 20px; /* Adjust as needed for spacing */
+    }
+
+    .current-language {
+      background: #40a840;
+      color: white;
+      border: none;
+      padding: 8px 15px;
+      border-radius: 6px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 14px;
+    }
+
+    .current-language::after {
+      content: '▼'; /* Dropdown arrow */
+      font-size: 10px;
+      margin-left: 5px;
+    }
+
+    .language-dropdown {
+      display: none;
+      position: absolute;
+      background-color: #f9f9f9;
+      min-width: 160px;
+      box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+      z-index: 1;
+      border-radius: 6px;
+      overflow: hidden;
+      margin-top: 5px;
+    }
+
+    .language-dropdown a {
+      color: black;
+      padding: 12px 16px;
+      text-decoration: none;
+      display: block;
+      font-size: 14px;
+    }
+
+    .language-dropdown a:hover {
+      background-color: #f1f1f1;
+      color: #40a840;
+    }
+
+    .custom-language-selector.active .language-dropdown {
+      display: block;
+    }
+
+
+    .destination-layout {
+      max-width: 1200px;
+      margin: 40px auto;
+      padding: 20px;
+      display: grid;
+      grid-template-columns: 2fr 1fr; /* left big, right small */
+      gap: 30px;
+    }
+
+    /* Left side */
+    .left-section h2 {
+      font-size: 28px;
+      margin-bottom: 10px;
+      color: #40a840;
+    }
+
+    .left-section p {
+      font-size: 16px;
+      line-height: 1.6;
+      margin-bottom: 20px;
+    }
+
+    .info-box {
+      background: rgba(255,255,255,0.95);
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    .info-box h3 {
+      margin-bottom: 12px;
+      color: #333;
+    }
+
+    .info-box ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .info-box ul li {
+      padding: 6px 0;
+      border-bottom: 1px solid #ddd; /* Adjusted border color */
+      font-size: 15px;
+      color: #333;
+    }
+
+    .info-box ul li strong {
+      color: #444;
+      margin-right: 6px;
+    }
+
+    /* Right side */
+    .right-section img {
+      width: 100%;
+      height: 250px;
+      border-radius: 12px;
+      object-fit: cover;
+      margin-bottom: 20px;
+      border: 1px solid #ddd;
+    }
+
+    .right-section iframe {
+      width: 100%;
+      height: 250px;
+      border-radius: 12px;
+      border: 1px solid #ddd;
+    }
+</style>
+<body>
+     <header>
+    <nav>
+      <ul>
+        <li><a href="#" data-translate="nav_home">Home</a></li>
+        <li><a href="#" data-translate="nav_destination">Destination</a></li>
+        <li><a href="#" data-translate="nav_bookings">Bookings</a></li>
+        <li><a href="#" data-translate="nav_contact_us">Contact Us</a></li>
+        <li class="language-option">
+          <div class="custom-language-selector" id="customLangSelector">
+            <button class="current-language" onclick="toggleLanguageDropdown()">
+              <span id="selectedLangText">English</span>
+            </button>
+            <div class="language-dropdown">
+              <a href="#" data-lang="en" onclick="changeLanguage('en', 'English')">English</a>
+              <a href="#" data-lang="hi" onclick="changeLanguage('hi', 'Hindi')">Hindi</a>
+              <a href="#" data-lang="or" onclick="changeLanguage('or', 'Odia')">Odia</a>
+              <a href="#" data-lang="mr" onclick="changeLanguage('mr', 'Marathi')">Marathi</a>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </nav>
+  </header>
+  <div>
+    <section class="destination-layout">
+    <!-- Left section -->
+    <div class="left-section">
+      <h2 data-translate="hazaribagh_title">Hazaribagh wildlife sanctuary</h2>
+      <p data-translate="hazaribagh_description">
+       Hazaribagh Wildlife Sanctuary, located in Jharkhand, is a haven for diverse flora and fauna amidst scenic hills and dense forests.
+It is home to animals like tigers, leopards, sambar, nilgai, chital, and wild boar.
+The sanctuary also hosts a variety of birds, making it a delight for birdwatchers.
+Surrounded by picturesque landscapes, it offers a peaceful escape for nature lovers.
+It is one of the oldest sanctuaries in India, preserving rich biodiversity and natural beauty.
+      </p>
+
+      <div class="info-box">
+        <h3 data-translate="travel_info_title">Travel Information</h3>
+        <ul>
+          <li data-translate="location_info"><strong>Location:</strong>Hazaribagh Bus Stand → Hazaribagh Wildlife Sanctuary</li>
+          <li data-translate="hotels_info"><strong>Hotels:</strong> Hotel Indralok Inn, Hotel Hill Side, Hotel Tara Tower</li>
+          <li data-translate="transport_info"><strong>Transport:</strong> Bus, Taxi, Auto available</li>
+          <li data-translate="season_info"><strong>Season:</strong> October – March</li>
+          <li data-translate="guides_info"><strong>Guides:</strong> Local guides available</li>
+          <li data-translate="emergency_info"><strong>Emergency:</strong>🚓 100 – Police, 🚑 108 – Ambulance, 🔥 101 – Fire Service </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Right section -->
+    <div class="right-section">
+      <img src="./image/Umred Karhandla Wildlife Sanctuary.jpg" alt="Destination Photo">
+     <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3640.8194797816104!2d85.37962777517636!3d24.142976978404615!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39f363bdb5c8055d%3A0x2d35637ceb4c54f0!2sHazaribagh%20Wildlife%20Sanctuary!5e0!3m2!1sen!2sin!4v1757207899077!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+  </section>
+  </div>
+
+  <script>
+    // Simple toggle for the dropdown
+    function toggleLanguageDropdown() {
+      document.getElementById("customLangSelector").classList.toggle("active");
+    }
+
+    // Close the dropdown if the user clicks outside of it
+    window.onclick = function(event) {
+      if (!event.target.matches('.current-language') && !event.target.matches('#selectedLangText')) {
+        var dropdowns = document.getElementsByClassName("custom-language-selector");
+        for (var i = 0; i < dropdowns.length; i++) {
+          var openDropdown = dropdowns[i];
+          if (openDropdown.classList.contains('active')) {
+            openDropdown.classList.remove('active');
+          }
+        }
+      }
+    }
+
+    const translations = {
+      en: {
+        nav_home: "Home",
+        nav_destination: "Destination",
+        nav_bookings: "Bookings",
+        nav_contact_us: "Contact Us",
+        hazaribagh_title: "Hazaribagh wildlife sanctuary",
+        hazaribagh_description: "Hazaribagh Wildlife Sanctuary, located in Jharkhand, is a haven for diverse flora and fauna amidst scenic hills and dense forests. It is home to animals like tigers, leopards, sambar, nilgai, chital, and wild boar. The sanctuary also hosts a variety of birds, making it a delight for birdwatchers. Surrounded by picturesque landscapes, it offers a peaceful escape for nature lovers. It is one of the oldest sanctuaries in India, preserving rich biodiversity and natural beauty.",
+        travel_info_title: "Travel Information",
+        location_info: "<strong>Location:</strong>Hazaribagh Bus Stand → Hazaribagh Wildlife Sanctuary",
+        hotels_info: "<strong>Hotels:</strong> Hotel Indralok Inn, Hotel Hill Side, Hotel Tara Tower",
+        transport_info: "<strong>Transport:</strong> Bus, Taxi, Auto available",
+        season_info: "<strong>Season:</strong> October – March",
+        guides_info: "<strong>Guides:</strong> Local guides available",
+        emergency_info: "<strong>Emergency:</strong>🚓 100 – Police, 🚑 108 – Ambulance, 🔥 101 – Fire Service"
+      },
+      hi: {
+        nav_home: "मुख्य पृष्ठ",
+        nav_destination: "गंतव्य",
+        nav_bookings: "बुकिंग",
+        nav_contact_us: "हमसे संपर्क करें",
+        hazaribagh_title: "हजारीबाग वन्यजीव अभयारण्य",
+        hazaribagh_description: "झारखंड में स्थित हजारीबाग वन्यजीव अभयारण्य, सुरम्य पहाड़ियों और घने जंगलों के बीच विविध वनस्पतियों और जीवों के लिए एक स्वर्ग है। यह बाघों, तेंदुओं, सांभर, नीलगाय, चीतल और जंगली सूअरों जैसे जानवरों का घर है। यह अभयारण्य विभिन्न प्रकार के पक्षियों का भी मेजबान है, जो इसे पक्षी प्रेमियों के लिए एक खुशी का स्थान बनाता है। सुरम्य परिदृश्यों से घिरा, यह प्रकृति प्रेमियों के लिए एक शांतिपूर्ण पलायन प्रदान करता है। यह भारत के सबसे पुराने अभयारण्यों में से एक है, जो समृद्ध जैव विविधता और प्राकृतिक सुंदरता को संरक्षित करता है।",
+        travel_info_title: "यात्रा जानकारी",
+        location_info: "<strong>स्थान:</strong> हजारीबाग बस स्टैंड → हजारीबाग वन्यजीव अभयारण्य",
+        hotels_info: "<strong>होटल:</strong> होटल इंद्रलोक इन, होटल हिल साइड, होटल तारा टॉवर",
+        transport_info: "<strong>परिवहन:</strong> बस, टैक्सी, ऑटो उपलब्ध",
+        season_info: "<strong>मौसम:</strong> अक्टूबर – मार्च",
+        guides_info: "<strong>गाइड:</strong> स्थानीय गाइड उपलब्ध",
+        emergency_info: "<strong>आपातकालीन:</strong>🚓 100 – पुलिस, 🚑 108 – एम्बुलेंस, 🔥 101 – फायर सर्विस"
+      },
+      or: {
+        nav_home: "ମୂଳପୃଷ୍ଠା",
+        nav_destination: "ଗନ୍ତବ୍ୟସ୍ଥଳ",
+        nav_bookings: "ବୁକିଂ",
+        nav_contact_us: "ଆମ ସହିତ ଯୋଗାଯୋଗ କରନ୍ତୁ",
+        hazaribagh_title: "ହଜାରିବାଗ୍ ବନ୍ୟଜୀବ ଅଭୟାରଣ୍ୟ",
+        hazaribagh_description: "ଝାଡଖଣ୍ଡରେ ଅବସ୍ଥିତ ହଜାରିବାଗ୍ ବନ୍ୟଜୀବ ଅଭୟାରଣ୍ୟ, ମନୋରମ ପାହାଡ ଏବଂ ଘଞ୍ଚ ଜଙ୍ଗଲ ମଧ୍ୟରେ ବିଭିନ୍ନ ପ୍ରକାରର ଉଦ୍ଭିଦ ଏବଂ ପ୍ରାଣୀଙ୍କ ପାଇଁ ଏକ ଆଶ୍ରୟସ୍ଥଳୀ। ଏହା ବାଘ, ଚିତାବାଘ, ସାମ୍ବର, ନୀଳଗାଈ, ଚିତଲ ଏବଂ ବାର୍ହା ପରି ପଶୁମାନଙ୍କର ଘର। ଏହି ଅଭୟାରଣ୍ୟ ବିଭିନ୍ନ ପ୍ରକାରର ପକ୍ଷୀଙ୍କୁ ମଧ୍ୟ ଆଶ୍ରୟ ଦେଇଥାଏ, ଯାହା ଏହାକୁ ପକ୍ଷୀ ଦେଖୁଥିବା ଲୋକଙ୍କ ପାଇଁ ଏକ ଆନନ୍ଦଦାୟକ ସ୍ଥାନ କରିଥାଏ। ରମଣୀୟ ଦୃଶ୍ୟାବଳୀରେ ଘେରି ରହିଥିବା ଏହା ପ୍ରକୃତି ପ୍ରେମୀଙ୍କ ପାଇଁ ଏକ ଶାନ୍ତମୟ ପଳାୟନ ପ୍ରଦାନ କରେ। ଏହା ଭାରତର ସର୍ବ ପୁରାତନ ଅଭୟାରଣ୍ୟ ମଧ୍ୟରୁ ଗୋଟିଏ, ଯାହା ସମୃଦ୍ଧ ଜୈବ ବିବିଧତା ଏବଂ ପ୍ରାକୃତିକ ସୌନ୍ଦର୍ଯ୍ୟକୁ ସଂରକ୍ଷଣ କରେ।",
+        travel_info_title: "ଯାତ୍ରା ସୂଚନା",
+        location_info: "<strong>ସ୍ଥାନ:</strong> ହଜାରିବାଗ୍ ବସ୍ ଷ୍ଟାଣ୍ଡ → ହଜାରିବାଗ୍ ବନ୍ୟଜୀବ ଅଭୟାରଣ୍ୟ",
+        hotels_info: "<strong>ହୋଟେଲ୍:</strong> ହୋଟେଲ୍ ଇନ୍ଦ୍ରଲୋକ ଇନ୍, ହୋଟେଲ୍ ହିଲ୍ ସାଇଡ୍, ହୋଟେଲ୍ ତାରା ଟାୱାର୍",
+        transport_info: "<strong>ପରିବହନ:</strong> ବସ୍, ଟାକ୍ସି, ଅଟୋ ଉପଲବ୍ଧ",
+        season_info: "<strong>ଋତୁ:</strong> ଅକ୍ଟୋବର – ମାର୍ଚ୍ଚ",
+        guides_info: "<strong>ଗାଇଡ୍:</strong> ସ୍ଥାନୀୟ ଗାଇଡ୍ ଉପଲବ୍ଧ",
+        emergency_info: "<strong>ଜରୁରୀକାଳୀନ:</strong>🚓 100 – ପୋଲିସ୍, 🚑 108 – ଆମ୍ବୁଲାନ୍ସ, 🔥 101 – ଫାୟାର୍ ସର୍ଭିସ୍"
+      },
+      mr: {
+        nav_home: "मुख्यपृष्ठ",
+        nav_destination: "गंतव्य",
+        nav_bookings: "बुकिंग",
+        nav_contact_us: "आमच्याशी संपर्क साधा",
+        hazaribagh_title: "हजारीबाग वन्यजीव अभयारण्य",
+        hazaribagh_description: "झारखंडमधील हजारीबाग वन्यजीव अभयारण्य, निसर्गरम्य टेकड्या आणि घनदाट जंगलांच्या दरम्यान विविध वनस्पती आणि प्राण्यांसाठी स्वर्ग आहे. हे वाघ, बिबट्या, सांभर, नीलगाय, चितळ आणि जंगली डुक्कर यांसारख्या प्राण्यांचे घर आहे. या अभयारण्यात विविध प्रकारचे पक्षी देखील आहेत, ज्यामुळे ते पक्षी निरीक्षकांसाठी एक आनंददायी ठिकाण बनते. नयनरम्य लँडस्केपने वेढलेले, ते निसर्गप्रेमींसाठी एक शांततापूर्ण सुटका प्रदान करते. हे भारतातील सर्वात जुन्या अभयारण्यांपैकी एक आहे, जे समृद्ध जैवविविधता आणि नैसर्गिक सौंदर्य जतन करते.",
+        travel_info_title: "प्रवास माहिती",
+        location_info: "<strong>स्थान:</strong> हजारीबाग बस स्टँड → हजारीबाग वन्यजीव अभयारण्य",
+        hotels_info: "<strong>हॉटेल:</strong> हॉटेल इंद्रलोक इन, हॉटेल हिल साइड, हॉटेल तारा टॉवर",
+        transport_info: "<strong>वाहतूक:</strong> बस, टॅक्सी, ऑटो उपलब्ध",
+        season_info: "<strong>हंगाम:</strong> ऑक्टोबर – मार्च",
+        guides_info: "<strong>गाईड्स:</strong> स्थानिक गाईड्स उपलब्ध",
+        emergency_info: "<strong>आपत्कालीन:</strong>🚓 100 – पोलीस, 🚑 108 – रुग्णवाहिका, 🔥 101 – अग्निशमन सेवा"
+      }
+    };
+
+    function changeLanguage(langCode, langName) {
+      document.getElementById("selectedLangText").innerText = langName;
+      // Close dropdown
+      document.getElementById("customLangSelector").classList.remove("active");
+
+      // Apply translations
+      const elementsToTranslate = document.querySelectorAll('[data-translate]');
+      elementsToTranslate.forEach(element => {
+        const key = element.getAttribute('data-translate');
+        if (translations[langCode] && translations[langCode][key]) {
+          element.innerHTML = translations[langCode][key];
+        }
+      });
+
+      // Update the page's lang attribute
+      document.documentElement.lang = langCode;
+    }
+
+    // Set initial language on load (e.g., English)
+    document.addEventListener('DOMContentLoaded', () => {
+      changeLanguage('en', 'English');
+    });
+  </script>
+</body>
+</html>

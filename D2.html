@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jharkhand Tourism Wildlife</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            color: white;
+            background: url('templebg.jpg') no-repeat center center fixed;
+            background-size: cover;
+        }
+
+        /* Navbar */
+        header {
+            background: rgba(0, 0, 0, 0.5);
+            padding: 1rem 0; /* Adjusted padding for better fit with dropdown */
+            position: sticky;
+            top: 0;
+            z-index: 1000; /* Ensure navbar is above other content */
+        }
+
+        nav ul {
+            display: flex;
+            justify-content: center;
+            align-items: center; /* Align items vertically */
+            list-style: none;
+            gap: 20px; /* Spacing between nav items */
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        nav ul li {
+            margin: 0 10px; /* Adjusted margin */
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: #90ee90;
+        }
+
+        /* Custom Language Selector Styles */
+        .custom-language-selector {
+            position: relative;
+            display: inline-block;
+            margin-left: 20px;
+        }
+
+        .current-language {
+            background: #40a840;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 6px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 14px;
+        }
+
+        .current-language::after {
+            content: '▼';
+            font-size: 10px;
+            margin-left: 5px;
+        }
+
+        .language-dropdown {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+            border-radius: 6px;
+            overflow: hidden;
+            margin-top: 5px;
+        }
+
+        .language-dropdown a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            font-size: 14px;
+        }
+
+        .language-dropdown a:hover {
+            background-color: #f1f1f1;
+            color: #40a840;
+        }
+
+        .custom-language-selector.active .language-dropdown {
+            display: block;
+        }
+
+        /* Main content layout */
+        .destination-layout {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 20px;
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 30px;
+        }
+
+        /* Left section */
+        .left-section h2 {
+            font-size: 28px;
+            margin-bottom: 10px;
+            color: #40a840;
+        }
+
+        .left-section p {
+            font-size: 16px;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .info-box {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        .info-box h3 {
+            margin-bottom: 12px;
+            color: #333;
+        }
+
+        .info-box ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .info-box ul li {
+            padding: 6px 0;
+            border-bottom: 1px solid #ddd; /* Changed from opaque black */
+            font-size: 15px;
+            color: #333;
+        }
+
+        .info-box ul li strong {
+            color: #444;
+            margin-right: 6px;
+        }
+
+        /* Right section */
+        .right-section img {
+            width: 100%;
+            height: 250px;
+            border-radius: 12px;
+            object-fit: cover;
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+        }
+
+        .right-section iframe {
+            width: 100%;
+            height: 250px;
+            border-radius: 12px;
+            border: 1px solid #ddd;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="index.html" data-translate="nav_home">Home</a></li>
+                <li><a href="destination.html" data-translate="nav_destination">Destination</a></li>
+                <li><a href="#" data-translate="nav_bookings">Bookings</a></li>
+                <li><a href="#" data-translate="nav_contact_us">Contact Us</a></li>
+                <li class="language-option">
+                    <div class="custom-language-selector" id="customLangSelector">
+                        <button class="current-language" onclick="toggleLanguageDropdown()">
+                            <span id="selectedLangText">English</span>
+                        </button>
+                        <div class="language-dropdown">
+                            <a href="#" data-lang="en" onclick="changeLanguage('en', 'English')">English</a>
+                            <a href="#" data-lang="hi" onclick="changeLanguage('hi', 'Hindi')">Hindi</a>
+                            <a href="#" data-lang="or" onclick="changeLanguage('or', 'Odia')">Odia</a>
+                            <a href="#" data-lang="mr" onclick="changeLanguage('mr', 'Marathi')">Marathi</a>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <div>
+        <section class="destination-layout">
+            <!-- Left section -->
+            <div class="left-section">
+                <h2 data-translate="parasnath_title">Parasnath Hill (Shikharji, Giridih)</h2>
+                <p data-translate="parasnath_description">
+                    Parasnath Hill (Shikharji, Giridih) is the highest peak in Jharkhand and one of the most sacred pilgrimage sites for Jains. It is believed that 20 out of 24 Jain Tirthankaras attained salvation here, making it a holy destination. The hill is surrounded by lush forests, offering both spiritual peace and natural beauty. Pilgrims trek to the summit, where temples and shrines dedicated to Tirthankaras are located. It is a blend of devotion, heritage, and breathtaking landscapes.
+                </p>
+
+                <div class="info-box">
+                    <h3 data-translate="travel_info_title">Travel Information</h3>
+                    <ul>
+                        <li data-translate="location_info"><strong>Location:</strong> Parasnath Railway Station (Isri Bazar) → Madhuban (base of Parasnath Hill)</li>
+                        <li data-translate="hotels_info"><strong>Hotels:</strong> Shikharji Continental, Sonnesta Grand Hotel</li>
+                        <li data-translate="transport_info"><strong>Transport:</strong> Bus, Taxi, Auto available</li>
+                        <li data-translate="season_info"><strong>Season:</strong> October – March</li>
+                        <li data-translate="guides_info"><strong>Guides:</strong> Local guides available</li>
+                        <li data-translate="emergency_info"><strong>Emergency:</strong> 🚓 100 – Police, 🚑 108 – Ambulance, 🔥 101 – Fire Service</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Right section -->
+            <div class="right-section">
+                <img src="./image/D2.jpg" alt="Destination Photo">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14583.764850721924!2d86.12247804094889!3d23.962518864825917!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39f405ad10eeb6db%3A0x482722b2d4569f53!2sParasnath!5e0!3m2!1sen!2sin!4v1757211301377!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        function toggleLanguageDropdown() {
+            document.getElementById("customLangSelector").classList.toggle("active");
+        }
+
+        window.onclick = function(event) {
+            if (!event.target.matches('.current-language') && !event.target.matches('#selectedLangText')) {
+                var dropdowns = document.getElementsByClassName("custom-language-selector");
+                for (var i = 0; i < dropdowns.length; i++) {
+                    var openDropdown = dropdowns[i];
+                    if (openDropdown.classList.contains('active')) {
+                        openDropdown.classList.remove('active');
+                    }
+                }
+            }
+        }
+
+        const translations = {
+            en: {
+                nav_home: "Home",
+                nav_destination: "Destination",
+                nav_bookings: "Bookings",
+                nav_contact_us: "Contact Us",
+                parasnath_title: "Parasnath Hill (Shikharji, Giridih)",
+                parasnath_description: "Parasnath Hill (Shikharji, Giridih) is the highest peak in Jharkhand and one of the most sacred pilgrimage sites for Jains. It is believed that 20 out of 24 Jain Tirthankaras attained salvation here, making it a holy destination. The hill is surrounded by lush forests, offering both spiritual peace and natural beauty. Pilgrims trek to the summit, where temples and shrines dedicated to Tirthankaras are located. It is a blend of devotion, heritage, and breathtaking landscapes.",
+                travel_info_title: "Travel Information",
+                location_info: "<strong>Location:</strong> Parasnath Railway Station (Isri Bazar) → Madhuban (base of Parasnath Hill)",
+                hotels_info: "<strong>Hotels:</strong> Shikharji Continental, Sonnesta Grand Hotel",
+                transport_info: "<strong>Transport:</strong> Bus, Taxi, Auto available",
+                season_info: "<strong>Season:</strong> October – March",
+                guides_info: "<strong>Guides:</strong> Local guides available",
+                emergency_info: "<strong>Emergency:</strong> 🚓 100 – Police, 🚑 108 – Ambulance, 🔥 101 – Fire Service"
+            },
+            hi: {
+                nav_home: "होम",
+                nav_destination: "गंतव्य",
+                nav_bookings: "बुकिंग",
+                nav_contact_us: "हमसे संपर्क करें",
+                parasnath_title: "पारसनाथ पहाड़ी (शिखरजी, गिरिडीह)",
+                parasnath_description: "पारसनाथ पहाड़ी (शिखरजी, गिरिडीह) झारखंड की सबसे ऊंची चोटी और जैनियों के लिए सबसे पवित्र तीर्थ स्थलों में से एक है। ऐसा माना जाता है कि 24 जैन तीर्थंकरों में से 20 ने यहां मोक्ष प्राप्त किया था, जिससे यह एक पवित्र गंतव्य बन गया है। यह पहाड़ी हरे-भरे जंगलों से घिरी हुई है, जो आध्यात्मिक शांति और प्राकृतिक सुंदरता दोनों प्रदान करती है। तीर्थयात्री शिखर तक पैदल यात्रा करते हैं, जहां तीर्थंकरों को समर्पित मंदिर औरShrines स्थित हैं। यह भक्ति, विरासत और लुभावने परिदृश्यों का एक मिश्रण है।",
+                travel_info_title: "यात्रा जानकारी",
+                location_info: "<strong>स्थान:</strong> पारसनाथ रेलवे स्टेशन (इसरी बाजार) → मधुबन (पारसनाथ पहाड़ी का आधार)",
+                hotels_info: "<strong>होटल:</strong> शिखरजी कॉन्टिनेंटल, सोननेस्टा ग्रैंड होटल",
+                transport_info: "<strong>परिवहन:</strong> बस, टैक्सी, ऑटो उपलब्ध",
+                season_info: "<strong>मौसम:</strong> अक्टूबर – मार्च",
+                guides_info: "<strong>गाइड:</strong> स्थानीय गाइड उपलब्ध",
+                emergency_info: "<strong>आपातकालीन:</strong> 🚓 100 – पुलिस, 🚑 108 – एम्बुलेंस, 🔥 101 – अग्नि सेवा"
+            },
+            or: {
+                nav_home: "ମୁଖ୍ୟପୃଷ୍ଠା",
+                nav_destination: "ଗନ୍ତବ୍ୟସ୍ଥଳ",
+                nav_bookings: "ବୁକିଂ",
+                nav_contact_us: "ଆମ ସହିତ ଯୋଗାଯୋଗ କରନ୍ତୁ",
+                parasnath_title: "ପାରସନାଥ ପାହାଡ଼ (ଶିଖରଜୀ, ଗିରିଡିହ)",
+                parasnath_description: "ପାରସନାଥ ପାହାଡ଼ (ଶିଖରଜୀ, ଗିରିଡିହ) ଝାଡ଼ଖଣ୍ଡର ସର୍ବୋଚ୍ଚ ଶିଖର ଏବଂ ଜୈନମାନଙ୍କ ପାଇଁ ସବୁଠାରୁ ପବିତ୍ର ତୀର୍ଥସ୍ଥଳୀ ମଧ୍ୟରୁ ଅନ୍ୟତମ। ଏହା ବିଶ୍ୱାସ କରାଯାଏ ଯେ 24 ଜଣ ଜୈନ ତୀର୍ଥଙ୍କରଙ୍କ ମଧ୍ୟରୁ 20 ଜଣ ଏଠାରେ ମୋକ୍ଷ ପ୍ରାପ୍ତ କରିଥିଲେ, ଯାହା ଏହାକୁ ଏକ ପବିତ୍ର ଗନ୍ତବ୍ୟସ୍ଥଳ କରିଥାଏ। ଏହି ପାହାଡ଼ ସବୁଜ ଜଙ୍ଗଲରେ ଘେରି ରହିଛି, ଯାହା ଆଧ୍ୟାତ୍ମିକ ଶାନ୍ତି ଏବଂ ପ୍ରାକୃତିକ ସୌନ୍ଦର୍ଯ୍ୟ ଉଭୟ ପ୍ରଦାନ କରେ। ତୀର୍ଥଯାତ୍ରୀମାନେ ଶିଖରକୁ ଯାତ୍ରା କରନ୍ତି, ଯେଉଁଠାରେ ତୀର୍ଥଙ୍କରମାନଙ୍କୁ ଉତ୍ସର୍ଗୀକୃତ ମନ୍ଦିର ଏବଂ shrines ଅବସ୍ଥିତ। ଏହା ଭକ୍ତି, ଐତିହ୍ୟ ଏବଂ ଚମତ୍କାର ଦୃଶ୍ୟର ଏକ ମିଶ୍ରଣ।",
+                travel_info_title: "ଯାତ୍ରା ସୂଚନା",
+                location_info: "<strong>ସ୍ଥାନ:</strong> ପାରସନାଥ ରେଳ ଷ୍ଟେସନ (ଇସ୍ରି ବଜାର) → ମଧୁବନ (ପାରସନାଥ ପାହାଡ଼ର ମୂଳ)",
+                hotels_info: "<strong>ହୋଟେଲ୍:</strong> ଶିଖରଜୀ କଣ୍ଟିନେଣ୍ଟାଲ, ସୋନେଷ୍ଟା ଗ୍ରାଣ୍ଡ ହୋଟେଲ",
+                transport_info: "<strong>ପରିବହନ:</strong> ବସ୍, ଟାକ୍ସି, ଅଟୋ ଉପଲବ୍ଧ",
+                season_info: "<strong>ଋତୁ:</strong> ଅକ୍ଟୋବର – ମାର୍ଚ୍ଚ",
+                guides_info: "<strong>ଗାଇଡ୍:</strong> ସ୍ଥାନୀୟ ଗାଇଡ୍ ଉପଲବ୍ଧ",
+                emergency_info: "<strong>ଜରୁରୀକାଳୀନ:</strong> 🚓 100 – ପୋଲିସ, 🚑 108 – ଆମ୍ବୁଲାନ୍ସ, 🔥 101 – ଅଗ୍ନିସେବା"
+            },
+            mr: {
+                nav_home: "मुख्यपृष्ठ",
+                nav_destination: "स्थळ",
+                nav_bookings: "बुकिंग",
+                nav_contact_us: "आमच्याशी संपर्क साधा",
+                parasnath_title: "पारसनाथ डोंगर (शिखरजी, गिरिडीह)",
+                parasnath_description: "पारसनाथ डोंगर (शिखरजी, गिरिडीह) झारखंडमधील सर्वात उंच शिखर आहे आणि जैनांसाठी सर्वात पवित्र तीर्थक्षेत्रांपैकी एक आहे. असे मानले जाते की 24 जैन तीर्थंकरांपैकी 20 तीर्थंकरांनी येथे मोक्ष प्राप्त केला, ज्यामुळे हे एक पवित्र स्थळ बनले आहे. हा डोंगर हिरवीगार जंगलांनी वेढलेला आहे, जो आध्यात्मिक शांतता आणि नैसर्गिक सौंदर्य दोन्ही प्रदान करतो. तीर्थयात्री शिखरावर ट्रेक करतात, जिथे तीर्थंकरांना समर्पित मंदिरे आणि shrines आहेत. हे भक्ती, वारसा आणि नयनरम्य दृश्यांचे मिश्रण आहे.",
+                travel_info_title: "प्रवास माहिती",
+                location_info: "<strong>स्थान:</strong> पारसनाथ रेल्वे स्टेशन (इस्री बाजार) → मधुबन (पारसनाथ डोंगराचा पायथा)",
+                hotels_info: "<strong>हॉटेल:</strong> शिखरजी कॉन्टिनेंटल, सोननेस्टा ग्रँड हॉटेल",
+                transport_info: "<strong>वाहतूक:</strong> बस, टॅक्सी, ऑटो उपलब्ध",
+                season_info: "<strong>हंगाम:</strong> ऑक्टोबर – मार्च",
+                guides_info: "<strong>गाईड्स:</strong> स्थानिक गाईड्स उपलब्ध",
+                emergency_info: "<strong>आपत्कालीन:</strong> 🚓 100 – पोलीस, 🚑 108 – ॲम्ब्युलन्स, 🔥 101 – अग्निशमन सेवा"
+            }
+        };
+
+        function changeLanguage(langCode, langName) {
+            document.getElementById("selectedLangText").innerText = langName;
+            document.getElementById("customLangSelector").classList.remove("active");
+
+            const elementsToTranslate = document.querySelectorAll('[data-translate]');
+            elementsToTranslate.forEach(element => {
+                const key = element.getAttribute('data-translate');
+                if (translations[langCode] && translations[langCode][key]) {
+                    element.innerHTML = translations[langCode][key];
+                }
+            });
+
+            document.documentElement.lang = langCode;
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            changeLanguage('en', 'English'); // Set initial language on load
+        });
+    </script>
+</body>
+</html>

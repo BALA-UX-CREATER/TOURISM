@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jharkhand Tourism Wildlife</title>
+</head>
+<style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Roboto', sans-serif;
+      color: white;
+      background: url('templebg.jpg') no-repeat center center fixed;
+      background-size:cover;
+    }
+
+    /* Navbar */
+    header {
+      background: rgba(0, 0, 0, 0.5);
+      padding: 1rem 0; /* Adjusted padding for better fit with language selector */
+      position: sticky;
+      top: 0;
+      z-index: 1000; /* Ensure navbar is above other content */
+    }
+
+    nav ul {
+      display: flex;
+      justify-content: center;
+      align-items: center; /* Align items vertically in the center */
+      list-style: none;
+      gap: 20px; /* Added gap for better spacing */
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    nav ul li {
+      margin: 0 10px; /* Adjusted margin */
+    }
+
+    nav ul li a {
+      color: white;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    nav ul li a:hover {
+      color: #90ee90;
+    }
+
+    /* Custom Language Selector Styles */
+    .custom-language-selector {
+      position: relative;
+      display: inline-block;
+      margin-left: 20px; /* Adjust as needed for spacing */
+    }
+
+    .current-language {
+      background: #40a840;
+      color: white;
+      border: none;
+      padding: 8px 15px;
+      border-radius: 6px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 14px;
+    }
+
+    .current-language::after {
+      content: '▼'; /* Dropdown arrow */
+      font-size: 10px;
+      margin-left: 5px;
+    }
+
+    .language-dropdown {
+      display: none;
+      position: absolute;
+      background-color: #f9f9f9;
+      min-width: 160px;
+      box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+      z-index: 1;
+      border-radius: 6px;
+      overflow: hidden;
+      margin-top: 5px;
+    }
+
+    .language-dropdown a {
+      color: black;
+      padding: 12px 16px;
+      text-decoration: none;
+      display: block;
+      font-size: 14px;
+    }
+
+    .language-dropdown a:hover {
+      background-color: #f1f1f1;
+      color: #40a840;
+    }
+
+    .custom-language-selector.active .language-dropdown {
+      display: block;
+    }
+
+    .destination-layout {
+      max-width: 1200px;
+      margin: 40px auto;
+      padding: 20px;
+      display: grid;
+      grid-template-columns: 2fr 1fr; /* left big, right small */
+      gap: 30px;
+    }
+
+    /* Left side */
+    .left-section h2 {
+      font-size: 28px;
+      margin-bottom: 10px;
+      color: #40a840;
+    }
+
+    .left-section p {
+      font-size: 16px;
+      line-height: 1.6;
+      margin-bottom: 20px;
+    }
+
+    .info-box {
+      background: rgba(255,255,255,0.95);
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    .info-box h3 {
+      margin-bottom: 12px;
+      color: #333;
+    }
+
+    .info-box ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .info-box ul li {
+      padding: 6px 0;
+      border-bottom: 1px solid #ddd; /* Changed border color for better visibility */
+      font-size: 15px;
+      color: #333;
+    }
+
+    .info-box ul li strong {
+      color: #444;
+      margin-right: 6px;
+    }
+
+    /* Right side */
+    .right-section img {
+      width: 100%;
+      height: 250px;
+      border-radius: 12px;
+      object-fit: cover;
+      margin-bottom: 20px;
+      border: 1px solid #ddd;
+    }
+
+    .right-section iframe {
+      width: 100%;
+      height: 250px;
+      border-radius: 12px;
+      border: 1px solid #ddd;
+    }
+</style>
+<body>
+     <header>
+    <nav>
+      <ul>
+        <li><a href="index.html" data-translate="nav_home">Home</a></li>
+        <li><a href="destination.html" data-translate="nav_destination">Destination</a></li>
+        <li><a href="#" data-translate="nav_bookings">Bookings</a></li>
+        <li><a href="#" data-translate="nav_contact">Contact Us</a></li>
+        <li class="language-option">
+          <div class="custom-language-selector" id="customLangSelector">
+            <button class="current-language" onclick="toggleLanguageDropdown()">
+              <span id="selectedLangText">English</span>
+            </button>
+            <div class="language-dropdown">
+              <a href="#" data-lang="en" onclick="changeLanguage('en', 'English')">English</a>
+              <a href="#" data-lang="hi" onclick="changeLanguage('hi', 'Hindi')">Hindi</a>
+              <a href="#" data-lang="or" onclick="changeLanguage('or', 'Odia')">Odia</a>
+              <a href="#" data-lang="mr" onclick="changeLanguage('mr', 'Marathi')">Marathi</a>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </nav>
+  </header>
+  <div>
+    <section class="destination-layout">
+    <!-- Left section -->
+    <div class="left-section">
+      <h2 data-translate="baidyanath_title">Baidyanath Dham (Deoghar)</h2>
+      <p data-translate="baidyanath_description">
+  Baidyanath Dham (Deoghar) is one of the twelve Jyotirlingas of Lord Shiva and a sacred pilgrimage site in India. The temple is also known as Baba Baidyanath Temple and holds immense importance in Hindu mythology. Every year, millions of devotees visit during the Shravani Mela, carrying holy water from the Ganga to offer to Lord Shiva. It is considered a place of ultimate faith, devotion, and spiritual fulfillment.
+      </p>
+
+      <div class="info-box">
+        <h3 data-translate="travel_info_title">Travel Information</h3>
+        <ul>
+          <li data-translate="location_info"><strong>Location:</strong>Jasidih Railway Station →  Deoghar Temple (Baidyanath Dham)</li>
+          <li data-translate="hotels_info"><strong>Hotels:</strong> Hotel Ekta International, Geetanjali International</li>
+          <li data-translate="transport_info"><strong>Transport:</strong> Bus, Taxi, Auto available</li>
+          <li data-translate="season_info"><strong>Season:</strong> October – March</li>
+          <li data-translate="guides_info"><strong>Guides:</strong> Local guides available</li>
+          <li data-translate="emergency_info"><strong>Emergency:</strong> 🚓 100 – Police, 🚑 108 – Ambulance, 🔥 101 – Fire Service</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Right section -->
+    <div class="right-section">
+      <img src="./image/D1.jpg" alt="Destination Photo">
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3630.7929870082808!2d86.69752007458737!3d24.49262855987901!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39f1162b1519c019%3A0xdb8ce9bf0b62d036!2sShree%20Baba%20Baidyanath%20Jyotirlinga%20Mandir%20Deoghar!5e0!3m2!1sen!2sin!4v1757210878179!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+  </section>
+  </div>
+
+  <script>
+    // Simple toggle for the dropdown
+    function toggleLanguageDropdown() {
+      document.getElementById("customLangSelector").classList.toggle("active");
+    }
+
+    // Close the dropdown if the user clicks outside of it
+    window.onclick = function(event) {
+      if (!event.target.matches('.current-language') && !event.target.matches('#selectedLangText')) {
+        var dropdowns = document.getElementsByClassName("custom-language-selector");
+        for (var i = 0; i < dropdowns.length; i++) {
+          var openDropdown = dropdowns[i];
+          if (openDropdown.classList.contains('active')) {
+            openDropdown.classList.remove('active');
+          }
+        }
+      }
+    }
+
+    const translations = {
+      en: {
+        // Navbar translations
+        nav_home: "Home",
+        nav_destination: "Destination",
+        nav_bookings: "Bookings",
+        nav_contact: "Contact Us",
+
+        // Main content translations
+        baidyanath_title: "Baidyanath Dham (Deoghar)",
+        baidyanath_description: "Baidyanath Dham (Deoghar) is one of the twelve Jyotirlingas of Lord Shiva and a sacred pilgrimage site in India. The temple is also known as Baba Baidyanath Temple and holds immense importance in Hindu mythology. Every year, millions of devotees visit during the Shravani Mela, carrying holy water from the Ganga to offer to Lord Shiva. It is considered a place of ultimate faith, devotion, and spiritual fulfillment.",
+        travel_info_title: "Travel Information",
+        location_info: "<strong>Location:</strong>Jasidih Railway Station →  Deoghar Temple (Baidyanath Dham)",
+        hotels_info: "<strong>Hotels:</strong> Hotel Ekta International, Geetanjali International",
+        transport_info: "<strong>Transport:</strong> Bus, Taxi, Auto available",
+        season_info: "<strong>Season:</strong> October – March",
+        guides_info: "<strong>Guides:</strong> Local guides available",
+        emergency_info: "<strong>Emergency:</strong> 🚓 100 – Police, 🚑 108 – Ambulance, 🔥 101 – Fire Service"
+      },
+      hi: {
+        // Navbar translations
+        nav_home: "होम",
+        nav_destination: "गंतव्य",
+        nav_bookings: "बुकिंग",
+        nav_contact: "हमसे संपर्क करें",
+
+        // Main content translations
+        baidyanath_title: "बैद्यनाथ धाम (देवघर)",
+        baidyanath_description: "बैद्यनाथ धाम (देवघर) भगवान शिव के बारह ज्योतिर्लिंगों में से एक है और भारत में एक पवित्र तीर्थ स्थल है। इस मंदिर को बाबा बैद्यनाथ मंदिर के नाम से भी जाना जाता है और हिंदू पौराणिक कथाओं में इसका अत्यधिक महत्व है। हर साल, लाखों भक्त श्रावणी मेले के दौरान गंगा से पवित्र जल लाकर भगवान शिव को अर्पित करने आते हैं। इसे परम विश्वास, भक्ति और आध्यात्मिक पूर्ति का स्थान माना जाता है।",
+        travel_info_title: "यात्रा जानकारी",
+        location_info: "<strong>स्थान:</strong>जसीडीह रेलवे स्टेशन → देवघर मंदिर (बैद्यनाथ धाम)",
+        hotels_info: "<strong>होटल:</strong> होटल एकता इंटरनेशनल, गीतांजलि इंटरनेशनल",
+        transport_info: "<strong>परिवहन:</strong> बस, टैक्सी, ऑटो उपलब्ध",
+        season_info: "<strong>मौसम:</strong> अक्टूबर – मार्च",
+        guides_info: "<strong>गाइड:</strong> स्थानीय गाइड उपलब्ध",
+        emergency_info: "<strong>आपातकालीन:</strong> 🚓 100 – पुलिस, 🚑 108 – एम्बुलेंस, 🔥 101 – फायर सर्विस"
+      },
+      or: {
+        // Navbar translations
+        nav_home: "ହୋମ୍",
+        nav_destination: "ଗନ୍ତବ୍ୟସ୍ଥଳ",
+        nav_bookings: "ବୁକିଂ",
+        nav_contact: "ଆମ ସହିତ ଯୋଗାଯୋଗ କରନ୍ତୁ",
+
+        // Main content translations
+        baidyanath_title: "ବୈଦ୍ୟନାଥ ଧାମ (ଦେଓଘର)",
+        baidyanath_description: "ବୈଦ୍ୟନାଥ ଧାମ (ଦେଓଘର) ଭଗବାନ ଶିବଙ୍କର ଦ୍ୱାଦଶ ଜ୍ୟୋତିର୍ଲିଙ୍ଗ ମଧ୍ୟରୁ ଅନ୍ୟତମ ଏବଂ ଭାରତରେ ଏକ ପବିତ୍ର ତୀର୍ଥସ୍ଥଳ। ଏହି ମନ୍ଦିର ବାବା ବୈଦ୍ୟନାଥ ମନ୍ଦିର ଭାବରେ ମଧ୍ୟ ଜଣାଶୁଣା ଏବଂ ହିନ୍ଦୁ ପୁରାଣରେ ଏହାର ଅତ୍ୟନ୍ତ ମହତ୍ତ୍ୱ ରହିଛି। ପ୍ରତିବର୍ଷ, ଲକ୍ଷ ଲକ୍ଷ ଭକ୍ତ ଶ୍ରାବଣୀ ମେଳା ସମୟରେ ଗଙ୍ଗାରୁ ପବିତ୍ର ଜଳ ନେଇ ଭଗବାନ ଶିବଙ୍କୁ ଅର୍ପଣ କରିବାକୁ ଆସନ୍ତି। ଏହାକୁ ପରମ ବିଶ୍ୱାସ, ଭକ୍ତି ଏବଂ ଆଧ୍ୟାତ୍ମିକ ପୂର୍ଣ୍ଣତାର ସ୍ଥାନ ଭାବରେ ବିବେଚନା କରାଯାଏ।",
+        travel_info_title: "ଯାତ୍ରା ସୂଚନା",
+        location_info: "<strong>ସ୍ଥାନ:</strong>ଜାସିଡିହ ରେଳ ଷ୍ଟେସନ → ଦେଓଘର ମନ୍ଦିର (ବୈଦ୍ୟନାଥ ଧାମ)",
+        hotels_info: "<strong>ହୋଟେଲ୍:</strong> ହୋଟେଲ୍ ଏକତା ଇଣ୍ଟରନ୍ୟାସନାଲ୍, ଗୀତାଞ୍ଜଳି ଇଣ୍ଟରନ୍ୟାସନାଲ୍",
+        transport_info: "<strong>ପରିବହନ:</strong> ବସ୍, ଟାକ୍ସି, ଅଟୋ ଉପଲବ୍ଧ",
+        season_info: "<strong>ଋତୁ:</strong> ଅକ୍ଟୋବର – ମାର୍ଚ୍ଚ",
+        guides_info: "<strong>ଗାଇଡ୍:</strong> ସ୍ଥାନୀୟ ଗାଇଡ୍ ଉପଲବ୍ଧ",
+        emergency_info: "<strong>ଜରୁରୀକାଳୀନ:</strong> 🚓 100 – ପୋଲିସ୍, 🚑 108 – ଆମ୍ବୁଲାନ୍ସ, 🔥 101 – ଅଗ୍ନିଶମ ସେବା"
+      },
+      mr: {
+        // Navbar translations
+        nav_home: "मुख्यपृष्ठ",
+        nav_destination: "गंतव्यस्थान",
+        nav_bookings: "बुकिंग",
+        nav_contact: "आमच्याशी संपर्क साधा",
+
+        // Main content translations
+        baidyanath_title: "बैद्यनाथ धाम (देवघर)",
+        baidyanath_description: "बैद्यनाथ धाम (देवघर) हे भगवान शंकराच्या बारा ज्योतिर्लिंगांपैकी एक आणि भारतातील एक पवित्र तीर्थक्षेत्र आहे. हे मंदिर बाबा बैद्यनाथ मंदिर म्हणूनही ओळखले जाते आणि हिंदू पौराणिक कथांमध्ये याला खूप महत्त्व आहे. दरवर्षी, लाखो भक्त श्रावणी मेळ्यादरम्यान गंगेचे पवित्र पाणी घेऊन भगवान शंकराला अर्पण करण्यासाठी येतात. हे परम श्रद्धा, भक्ती आणि आध्यात्मिक पूर्ततेचे स्थान मानले जाते.",
+        travel_info_title: "प्रवास माहिती",
+        location_info: "<strong>स्थान:</strong>जसीडीह रेल्वे स्टेशन → देवघर मंदिर (बैद्यनाथ धाम)",
+        hotels_info: "<strong>हॉटेल:</strong> हॉटेल एकता इंटरनॅशनल, गीतांजली इंटरनॅशनल",
+        transport_info: "<strong>वाहतूक:</strong> बस, टॅक्सी, ऑटो उपलब्ध",
+        season_info: "<strong>हंगाम:</strong> ऑक्टोबर – मार्च",
+        guides_info: "<strong>गाईड्स:</strong> स्थानिक गाईड्स उपलब्ध",
+        emergency_info: "<strong>आपत्कालीन:</strong> 🚓 100 – पोलीस, 🚑 108 – रुग्णवाहिका, 🔥 101 – अग्निशमन सेवा"
+      }
+    };
+
+    function changeLanguage(langCode, langName) {
+      document.getElementById("selectedLangText").innerText = langName;
+      document.getElementById("customLangSelector").classList.remove("active");
+
+      const elementsToTranslate = document.querySelectorAll('[data-translate]');
+      elementsToTranslate.forEach(element => {
+        const key = element.getAttribute('data-translate');
+        if (translations[langCode] && translations[langCode][key]) {
+          element.innerHTML = translations[langCode][key];
+        }
+      });
+
+      document.documentElement.lang = langCode;
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      changeLanguage('en', 'English');
+    });
+  </script>
+</body>
+</html>

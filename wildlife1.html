@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Betla National Park</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Roboto', sans-serif;
+      color: white;
+      background: url('templebg.jpg') no-repeat center center fixed;
+      background-size:cover;   
+    }
+
+        /* Navbar */
+        header {
+            background: rgba(0, 0, 0, 0.5);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+
+        nav ul {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            list-style: none;
+            gap: 20px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        nav ul li {
+            margin: 0 10px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            padding: 5px 10px;
+            transition: color 0.3s, background-color 0.3s;
+            border-radius: 4px;
+        }
+
+        nav ul li a:hover {
+            color: #fff;
+            background-color: #5cb85c; /* A lighter green for hover */
+        }
+
+        /* Custom Language Selector Styles */
+        .custom-language-selector {
+            position: relative;
+            display: inline-block;
+            margin-left: 20px;
+        }
+
+        .current-language {
+            background: #40a840;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 6px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 14px;
+            transition: background-color 0.3s;
+        }
+
+        .current-language:hover {
+            background-color: #368a36;
+        }
+
+        .current-language::after {
+            content: '▼';
+            font-size: 10px;
+            margin-left: 5px;
+            transition: transform 0.3s;
+        }
+
+        .custom-language-selector.active .current-language::after {
+            transform: rotate(180deg);
+        }
+
+        .language-dropdown {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+            border-radius: 6px;
+            overflow: hidden;
+            margin-top: 5px;
+            left: 0; /* Align dropdown with the button */
+        }
+
+        .language-dropdown a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            font-size: 14px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .language-dropdown a:hover {
+            background-color: #e0e0e0;
+            color: #40a840;
+        }
+
+        .custom-language-selector.active .language-dropdown {
+            display: block;
+        }
+
+        /* Main Content Layout */
+        .destination-layout {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 20px;
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 30px;
+            background: rgba(0, 0, 0, 0.6); /* Slightly darker overlay for content */
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+            flex-grow: 1; /* Allows content to take available space */
+        }
+
+        /* Left section */
+        .left-section h2 {
+            font-size: 2.2em;
+            margin-bottom: 15px;
+            color: #90ee90; /* Light green for headings */
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+        }
+
+        .left-section p {
+            font-size: 1.1em;
+            line-height: 1.8;
+            margin-bottom: 25px;
+            color: #e0e0e0;
+        }
+
+        .info-box {
+            background: rgba(255,255,255,0.95);
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+        }
+
+        .info-box h3 {
+            margin-bottom: 15px;
+            color: #333;
+            font-size: 1.5em;
+            border-bottom: 2px solid #40a840;
+            padding-bottom: 8px;
+        }
+
+        .info-box ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .info-box ul li {
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+            font-size: 1em;
+            color: #444;
+            display: flex;
+            align-items: center;
+        }
+
+        .info-box ul li:last-child {
+            border-bottom: none;
+        }
+
+        .info-box ul li strong {
+            color: #222;
+            margin-right: 10px;
+            min-width: 90px; /* Aligns content better */
+        }
+
+        /* Right section */
+        .right-section img {
+            width: 100%;
+            height: 280px; /* Slightly taller images */
+            border-radius: 12px;
+            object-fit: cover;
+            margin-bottom: 25px;
+            border: 3px solid #40a840;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+
+        .right-section iframe {
+            width: 100%;
+            height: 280px; /* Consistent height */
+            border-radius: 12px;
+            border: 3px solid #40a840;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+
+        /* Footer */
+        footer {
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            text-align: center;
+            padding: 1rem 0;
+            margin-top: auto; /* Pushes footer to the bottom */
+            font-size: 0.9em;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .destination-layout {
+                grid-template-columns: 1fr; /* Stack columns on smaller screens */
+                padding: 15px;
+                margin: 20px auto;
+            }
+
+            nav ul {
+                flex-wrap: wrap; /* Allow navbar items to wrap */
+                gap: 10px;
+            }
+
+            nav ul li {
+                margin: 5px;
+            }
+
+            .custom-language-selector {
+                margin-left: 0;
+                width: 100%; /* Full width for better touch on small screens */
+                text-align: center;
+            }
+
+            .language-dropdown {
+                min-width: unset;
+                width: 100%;
+                left: 0;
+                right: 0;
+            }
+        }
+
+        @media (max-width: 576px) {
+            body {
+                background-attachment: scroll; /* For better performance on mobile */
+            }
+            header {
+                padding: 0.8rem 0;
+            }
+            nav ul li a {
+                padding: 3px 8px;
+                font-size: 0.9em;
+            }
+            .left-section h2 {
+                font-size: 1.8em;
+            }
+            .left-section p {
+                font-size: 1em;
+            }
+            .info-box h3 {
+                font-size: 1.3em;
+            }
+            .info-box ul li {
+                font-size: 0.9em;
+            }
+            .right-section img, .right-section iframe {
+                height: 200px;
+                margin-bottom: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="#" data-translate="nav_home">Home</a></li>
+                <li><a href="#" data-translate="nav_destination">Destination</a></li>
+                <li><a href="#" data-translate="nav_bookings">Bookings</a></li>
+                <li><a href="#" data-translate="nav_contact_us">Contact Us</a></li>
+                <li class="language-option">
+                    <div class="custom-language-selector" id="customLangSelector">
+                        <button class="current-language" onclick="toggleLanguageDropdown()">
+                            <span id="selectedLangText">English</span>
+                        </button>
+                        <div class="language-dropdown">
+                            <a href="#" data-lang="en" onclick="changeLanguage('en', 'English')">English</a>
+                            <a href="#" data-lang="hi" onclick="changeLanguage('hi', 'Hindi')">Hindi</a>
+                            <a href="#" data-lang="or" onclick="changeLanguage('or', 'Odia')">Odia</a>
+                            <a href="#" data-lang="mr" onclick="changeLanguage('mr', 'Marathi')">Marathi</a>
+                            <!-- Add more languages as needed -->
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="destination-layout">
+            <!-- Left section -->
+            <div class="left-section">
+                <h2 data-translate="betla_national_park_title">Betla National Park</h2>
+                <p data-translate="betla_national_park_description">
+                    Betla National Park in Latehar, Jharkhand, is one of India’s first tiger reserves under Project Tiger (1974).
+                    It is rich in wildlife, with elephants, tigers, leopards, bison, and over 200 species of birds.
+                    Tourists can enjoy jeep safaris, elephant rides, trekking, and explore the historic Palamu Forts.
+                    With its forests, waterfalls, and natural beauty, Betla is a must-visit destination for nature lovers.
+                </p>
+
+                <div class="info-box">
+                    <h3 data-translate="travel_info_title">Travel Information</h3>
+                    <ul>
+                        <li data-translate="location_info"><strong>Location:</strong> Daltonganj Bus Stand → Betla National Park </li>
+                        <li data-translate="hotels_info"><strong>Hotels:</strong> Hotel Van Vihar, Hotel Park View, Aaradhya Resort</li>
+                        <li data-translate="transport_info"><strong>Transport:</strong> Bus, Taxi, Auto available</li>
+                        <li data-translate="season_info"><strong>Season:</strong> November – March</li>
+                        <li data-translate="guides_info"><strong>Guides:</strong> Local guides are available</li>
+                        <li data-translate="emergency_info"><strong>Emergency:</strong>🚓 100 – Police, 🚑 108 – Ambulance, 🔥 101 – Fire Service</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Right section -->
+            <div class="right-section">
+                <!-- You'll need to make sure 'Betla National Park.jpg' is in the correct path or replace it -->
+                <img src="./image/Betla National Park.jpg" alt="Betla National Park Photo">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5852.171683809399!2d84.18983542539661!3d23.885295776994305!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x398b837be6d19761%3A0xb1a90adf2189a235!2sBetla%20National%20Park!5e0!3m2!1sen!2sin!4v1757183286077!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2023 Jharkhand Tourism. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Simple toggle for the dropdown
+        function toggleLanguageDropdown() {
+            document.getElementById("customLangSelector").classList.toggle("active");
+        }
+
+        // Close the dropdown if the user clicks outside of it
+        window.onclick = function(event) {
+            if (!event.target.matches('.current-language') && !event.target.matches('#selectedLangText')) {
+                var dropdowns = document.getElementsByClassName("custom-language-selector");
+                for (var i = 0; i < dropdowns.length; i++) {
+                    var openDropdown = dropdowns[i];
+                    if (openDropdown.classList.contains('active')) {
+                        openDropdown.classList.remove('active');
+                    }
+                }
+            }
+        }
+
+        const translations = {
+            en: {
+                nav_home: "Home",
+                nav_destination: "Destination",
+                nav_bookings: "Bookings",
+                nav_contact_us: "Contact Us",
+                betla_national_park_title: "Betla National Park",
+                betla_national_park_description: "Betla National Park in Latehar, Jharkhand, is one of India’s first tiger reserves under Project Tiger (1974). It is rich in wildlife, with elephants, tigers, leopards, bison, and over 200 species of birds. Tourists can enjoy jeep safaris, elephant rides, trekking, and explore the historic Palamu Forts. With its forests, waterfalls, and natural beauty, Betla is a must-visit destination for nature lovers.",
+                travel_info_title: "Travel Information",
+                location_info: "<strong>Location:</strong> Daltonganj Bus Stand → Betla National Park",
+                hotels_info: "<strong>Hotels:</strong> Hotel Van Vihar, Hotel Park View, Aaradhya Resort",
+                transport_info: "<strong>Transport:</strong> Bus, Taxi, Auto available",
+                season_info: "<strong>Season:</strong> November – March",
+                guides_info: "<strong>Guides:</strong> Local guides are available",
+                emergency_info: "<strong>Emergency:</strong>🚓 100 – Police, 🚑 108 – Ambulance, 🔥 101 – Fire Service"
+            },
+            hi: {
+                nav_home: "होम",
+                nav_destination: "गंतव्य",
+                nav_bookings: "बुकिंग",
+                nav_contact_us: "हमसे संपर्क करें",
+                betla_national_park_title: "बेतला राष्ट्रीय उद्यान",
+                betla_national_park_description: "झारखंड के लातेहार में स्थित बेतला राष्ट्रीय उद्यान, प्रोजेक्ट टाइगर (1974) के तहत भारत के पहले बाघ अभयारण्यों में से एक है। यह वन्यजीवों से समृद्ध है, जिसमें हाथी, बाघ, तेंदुए, बाइसन और 200 से अधिक प्रजातियों के पक्षी शामिल हैं। पर्यटक जीप सफारी, हाथी की सवारी, ट्रेकिंग का आनंद ले सकते हैं और ऐतिहासिक पलामू किलों का पता लगा सकते हैं। अपने जंगलों, झरनों और प्राकृतिक सुंदरता के साथ, बेतला प्रकृति प्रेमियों के लिए एक अवश्य घूमने योग्य स्थान है।",
+                travel_info_title: "यात्रा जानकारी",
+                location_info: "<strong>स्थान:</strong> डाल्टनगंज बस स्टैंड → बेतला राष्ट्रीय उद्यान",
+                hotels_info: "<strong>होटल:</strong> होटल वन विहार, होटल पार्क व्यू, आराध्या रिसॉर्ट",
+                transport_info: "<strong>परिवहन:</strong> बस, टैक्सी, ऑटो उपलब्ध",
+                season_info: "<strong>मौसम:</strong> नवंबर – मार्च",
+                guides_info: "<strong>गाइड:</strong> स्थानीय गाइड उपलब्ध",
+                emergency_info: "<strong>आपातकालीन:</strong>🚓 100 – पुलिस, 🚑 108 – एम्बुलेंस, 🔥 101 – फायर सर्विस"
+            },
+            or: {
+                nav_home: "ମୁଖ୍ୟପୃଷ୍ଠା",
+                nav_destination: "ଗନ୍ତବ୍ୟସ୍ଥଳ",
+                nav_bookings: "ବୁକିଂ",
+                nav_contact_us: "ଆମ ସହିତ ଯୋଗାଯୋଗ କରନ୍ତୁ",
+                betla_national_park_title: "ବେତଲା ଜାତୀୟ ଉଦ୍ୟାନ",
+                betla_national_park_description: "ଝାଡଖଣ୍ଡର ଲାତେହାରରେ ଅବସ୍ଥିତ ବେତଲା ଜାତୀୟ ଉଦ୍ୟାନ, ପ୍ରୋଜେକ୍ଟ ଟାଇଗର (1974) ଅଧୀନରେ ଭାରତର ପ୍ରଥମ ବାଘ ଅଭୟାରଣ୍ୟ ମଧ୍ୟରୁ ଗୋଟିଏ। ଏହା ହାତୀ, ବାଘ, ଚିତାବାଘ, ବାଇସନ୍ ଏବଂ 200 ରୁ ଅଧିକ ପ୍ରଜାତିର ପକ୍ଷୀ ସହିତ ବନ୍ୟଜୀବନରେ ସମୃଦ୍ଧ। ପର୍ଯ୍ୟଟକମାନେ ଜିପ୍ ସଫାରି, ହାତୀ ଚଢ଼ା, ଟ୍ରେକିଂ ଏବଂ ଐତିହାସିକ ପାଲାମୁ ଦୁର୍ଗ ପରିଦର୍ଶନ କରିପାରିବେ। ଏହାର ଜଙ୍ଗଲ, ଜଳପ୍ରପାତ ଏବଂ ପ୍ରାକୃତିକ ସୌନ୍ଦର୍ଯ୍ୟ ସହିତ, ବେତଲା ପ୍ରକୃତି ପ୍ରେମୀଙ୍କ ପାଇଁ ଏକ ଅବଶ୍ୟ ପରିଦର୍ଶନୀୟ ସ୍ଥାନ।",
+                travel_info_title: "ଯାତ୍ରା ସୂଚନା",
+                location_info: "<strong>ସ୍ଥାନ:</strong> ଡାଲଟନଗଞ୍ଜ ବସ୍ ଷ୍ଟାଣ୍ଡ → ବେତଲା ଜାତୀୟ ଉଦ୍ୟାନ",
+                hotels_info: "<strong>ହୋଟେଲ୍:</strong> ହୋଟେଲ୍ ବନ ବିହାର, ହୋଟେଲ୍ ପାର୍କ ଭ୍ୟୁ, ଆରାଧ୍ୟା ରିସୋର୍ଟ",
+                transport_info: "<strong>ପରିବହନ:</strong> ବସ୍, ଟାକ୍ସି, ଅଟୋ ଉପଲବ୍ଧ",
+                season_info: "<strong>ଋତୁ:</strong> ନଭେମ୍ବର – ମାର୍ଚ୍ଚ",
+                guides_info: "<strong>ଗାଇଡ୍:</strong> ସ୍ଥାନୀୟ ଗାଇଡ୍ ଉପଲବ୍ଧ",
+                emergency_info: "<strong>ଜରୁରୀକାଳୀନ:</strong>🚓 100 – ପୋଲିସ୍, 🚑 108 – ଆମ୍ବୁଲାନ୍ସ, 🔥 101 – ଫାୟାର୍ ସର୍ଭିସ୍"
+            },
+            mr: {
+                nav_home: "मुख्यपृष्ठ",
+                nav_destination: "गंतव्य",
+                nav_bookings: "बुकिंग",
+                nav_contact_us: "आमच्याशी संपर्क साधा",
+                betla_national_park_title: "बेतला राष्ट्रीय उद्यान",
+                betla_national_park_description: "झारखंडमधील लातेहार येथील बेतला राष्ट्रीय उद्यान, प्रोजेक्ट टायगर (1974) अंतर्गत भारतातील पहिल्या व्याघ्र प्रकल्पांपैकी एक आहे. हे हत्ती, वाघ, बिबट्या, बायसन आणि 200 हून अधिक पक्ष्यांच्या प्रजातींसह वन्यजीवांसाठी समृद्ध आहे. पर्यटक जीप सफारी, हत्तीची सवारी, ट्रेकिंगचा आनंद घेऊ शकतात आणि ऐतिहासिक पलामू किल्ल्यांना भेट देऊ शकतात. त्याच्या जंगल, धबधबे आणि नैसर्गिक सौंदर्यासह, बेतला निसर्गप्रेमींसाठी एक आवर्जून भेट देण्याचे ठिकाण आहे।",
+                travel_info_title: "प्रवास माहिती",
+                location_info: "<strong>स्थान:</strong> डाल्टनगंज बस स्टँड → बेतला राष्ट्रीय उद्यान",
+                hotels_info: "<strong>हॉटेल:</strong> हॉटेल वन विहार, हॉटेल पार्क व्ह्यू, आराध्या रिसॉर्ट",
+                transport_info: "<strong>वाहतूक:</strong> बस, टॅक्सी, ऑटो उपलब्ध",
+                season_info: "<strong>हंगाम:</strong> नोव्हेंबर – मार्च",
+                guides_info: "<strong>गाईड्स:</strong> स्थानिक गाईड्स उपलब्ध",
+                emergency_info: "<strong>आपत्कालीन:</strong>🚓 100 – पोलीस, 🚑 108 – रुग्णवाहिका, 🔥 101 – अग्निशमन सेवा"
+            }
+        };
+
+        function changeLanguage(langCode, langName) {
+            document.getElementById("selectedLangText").innerText = langName;
+            // Close dropdown
+            document.getElementById("customLangSelector").classList.remove("active");
+
+            // Apply translations
+            const elementsToTranslate = document.querySelectorAll('[data-translate]');
+            elementsToTranslate.forEach(element => {
+                const key = element.getAttribute('data-translate');
+                if (translations[langCode] && translations[langCode][key]) {
+                    element.innerHTML = translations[langCode][key];
+                }
+            });
+
+            // Update the page's lang attribute
+            document.documentElement.lang = langCode;
+        }
+
+        // Set initial language on load (e.g., English)
+        document.addEventListener('DOMContentLoaded', () => {
+            changeLanguage('en', 'English');
+        });
+    </script>
+</body>
+</html>

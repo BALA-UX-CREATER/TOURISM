@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Explore Jharkhand</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    /* General Styles */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Roboto', sans-serif;
+      color: white;
+      background: url('2345.jpg') no-repeat center center fixed;
+      background-size: cover;   
+    }
+
+    /* Navbar */
+    header {
+      background: rgba(0, 0, 0, 0.5);
+      padding: 1rem 0; /* Adjusted padding */
+      position: sticky;
+      top: 0;
+      z-index: 1000; /* Added z-index to keep it on top */
+    }
+
+    nav ul {
+      display: flex;
+      justify-content: center;
+      align-items: center; /* Align items vertically */
+      list-style: none;
+      gap: 20px; /* Spacing between nav items */
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    nav ul li {
+      margin: 0 10px; /* Adjusted margin */
+    }
+
+    nav ul li a {
+      color: white;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    nav ul li a:hover {
+      color: #90ee90;
+    }
+
+    /* Custom Language Selector Styles */
+    .custom-language-selector {
+      position: relative;
+      display: inline-block;
+      margin-left: 20px; /* Adjust as needed for spacing */
+    }
+
+    .current-language {
+      background: #40a840; /* Green background */
+      color: white;
+      border: none;
+      padding: 8px 15px;
+      border-radius: 6px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 14px;
+    }
+
+    .current-language::after {
+      content: '▼'; /* Dropdown arrow */
+      font-size: 10px;
+      margin-left: 5px;
+    }
+
+    .language-dropdown {
+      display: none;
+      position: absolute;
+      background-color: #f9f9f9;
+      min-width: 160px;
+      box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+      z-index: 1;
+      border-radius: 6px;
+      overflow: hidden;
+      margin-top: 5px;
+    }
+
+    .language-dropdown a {
+      color: black;
+      padding: 12px 16px;
+      text-decoration: none;
+      display: block;
+      font-size: 14px;
+    }
+
+    .language-dropdown a:hover {
+      background-color: #f1f1f1;
+      color: #40a840; /* Green on hover */
+    }
+
+    .custom-language-selector.active .language-dropdown {
+      display: block;
+    }
+
+
+    /* Hero Section */
+    .hero {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 4rem 8%;
+      gap: 2rem;
+      flex-wrap: wrap;
+      height: 100vh;
+    }
+
+    .hero-content {
+      max-width: 600px;
+    }
+
+    .hero h1 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .hero p {
+      font-size: 1.1rem;
+      line-height: 1.6;
+      margin-bottom: 2rem;
+    }
+
+    button {
+      background: none;
+      border: 2px solid white;
+      color: white;
+      padding: 0.7rem 2rem;
+      font-size: 1.2rem;
+      cursor: pointer;
+      border-radius: 50px;
+      transition: background 0.3s, transform 0.2s;
+    }
+
+    button:hover {
+      background: rgba(255, 255, 255, 0.2);
+      transform: scale(1.05);
+    }
+
+    /* Hero Side Image */
+    .hero-image img {
+      width: 299px;
+      height: auto;
+      border-radius: 30px;
+
+    }
+
+    /* Floating Icon */
+    .floating-icon {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+    }
+
+    .floating-icon img {
+      width: 50px;
+      
+    }
+
+    /* Floating Animation */
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    /* Scroll Section */
+    .explore-section {
+      min-height: 100vh; /* Changed from height to min-height */
+      background: rgba(0,0,0,0.6);
+      display: flex;
+      flex-direction: column; /* Changed to column for stacking */
+      justify-content: center;
+      align-items: center;
+      text-align: center; /* Center text */
+      padding: 40px 20px; /* Added padding */
+      color: #fff;
+    }
+
+    .explore-section h2 {
+      font-size: 2.5rem;
+      margin-bottom: 50px;
+      color: #fff;
+    }
+    .circle-link {
+      display: inline-block;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      overflow: hidden;
+      box-shadow: 0 4px 8px rgba(0, 128, 0, 0.2); /* soft green shadow */
+      
+    }
+
+    .circle-link:hover {
+      transform: scale(1.05);
+    }
+
+    .circle-avatar {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* Panels Row */
+    #destination-panels {
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+      flex-wrap: wrap; /* stacks neatly on smaller screens */
+    }
+
+    /* Individual Card */
+    .panel {
+      width: 250px;
+      background: rgba(255, 255, 255, 0.15);
+      border-radius: 20px;
+      padding: 20px;
+      text-align: center;
+      color: #fff;
+      box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+      transition: transform 0.3s ease, background 0.3s ease;
+    }
+
+    .panel h3 {
+      margin-bottom: 15px;
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
+
+    .panel img {
+      width: 100%;
+      height: 180px;
+      border-radius: 12px;
+      object-fit: cover;
+    }
+
+    /* Hover Effect */
+    .panel:hover {
+      transform: translateY(-10px);
+      background: rgba(255, 255, 255, 0.25);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <header>
+    <nav>
+      <ul>
+        <li><a href="index.html" data-translate="nav_home">Home</a></li>
+        <li><a href="destination.html" data-translate="nav_destination">Destination</a></li>
+        <li><a href="#" data-translate="nav_bookings">Bookings</a></li>
+        <li><a href="#" data-translate="nav_contact_us">Contact Us</a></li>
+        <li class="language-option">
+          <div class="custom-language-selector" id="customLangSelector">
+            <button class="current-language" onclick="toggleLanguageDropdown()">
+              <span id="selectedLangText">English</span>
+            </button>
+            <div class="language-dropdown">
+              <a href="#" data-lang="en" onclick="changeLanguage('en', 'English')">English</a>
+              <a href="#" data-lang="hi" onclick="changeLanguage('hi', 'Hindi')">Hindi</a>
+              <a href="#" data-lang="or" onclick="changeLanguage('or', 'Odia')">Odia</a>
+              <a href="#" data-lang="mr" onclick="changeLanguage('mr', 'Marathi')">Marathi</a>
+              <!-- Add more languages as needed -->
+            </div>
+          </div>
+        </li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1 data-translate="hero_title">Explore Hidden Gems of Jharkhand</h1>
+      <p data-translate="hero_description">
+        Jharkhand, the “Land of Forests,” is blessed with majestic waterfalls, lush hills,
+        rich tribal culture, and sacred temples. From eco-adventures to spiritual journeys,
+        it offers hidden gems waiting to be explored. Our platform brings all maps, guides,
+        and experiences together to make your Jharkhand trip seamless and unforgettable.
+      </p>
+      <button id="exploreBtn" data-translate="hero_explore_button">⤷ EXPLORE</button>
+    </div>
+
+    <div class="hero-image">
+      <img src="hero image.jpg" alt="Jharkhand Forest">
+    </div>
+  </section>
+
+  <!-- Floating Icon -->
+  <div class="floating-icon">
+    <a href="chatbot.html" target="_blank" class="circle-link">
+    <img src="profile chat.jpg" alt="Chatbot Avatar" class="circle-avatar">
+    </a>
+  </div>
+
+
+  <section id="explore" class="explore-section">
+  <h2 data-translate="destinations_title">Welcome to Jharkhand Destinations</h2>
+    <div id="destination-panels">
+    <div class="panel">
+      <h3 data-translate="wildlife_panel_title">WILDLIFE</h3>
+      <a href="wildlife.html">
+      <img src="wildlife.jpg" alt="Wildlife">
+      </a>
+    </div>
+
+    <div class="panel">
+      <h3 data-translate="devotion_panel_title">DEVOTION</h3>
+      <img src="devotion.jpg" alt="Devotion">
+    </div>
+
+    <div class="panel">
+      <h3 data-translate="adventure_panel_title">ADVENTURE</h3>
+      <img src="adventure.jpg" alt="Adventure">
+    </div>
+  </div>
+</section>
+  
+  <script>
+    // Smooth scroll on button click
+    document.getElementById("exploreBtn").addEventListener("click", () => {
+      document.getElementById("explore").scrollIntoView({ behavior: "smooth" });
+    });
+
+     document.getElementById("explore").addEventListener("click", () => {
+      document.getElementById("explore").scrollIntoView({ behavior: "smooth" });
+    });
+
+    // Simple toggle for the dropdown
+    function toggleLanguageDropdown() {
+      document.getElementById("customLangSelector").classList.toggle("active");
+    }
+
+    // Close the dropdown if the user clicks outside of it
+    window.onclick = function(event) {
+      if (!event.target.matches('.current-language') && !event.target.matches('#selectedLangText')) {
+        var dropdowns = document.getElementsByClassName("custom-language-selector");
+        for (var i = 0; i < dropdowns.length; i++) {
+          var openDropdown = dropdowns[i];
+          if (openDropdown.classList.contains('active')) {
+            openDropdown.classList.remove('active');
+          }
+        }
+      }
+    }
+
+    // --- Placeholder for actual translation logic ---
+    const translations = {
+      en: {
+        nav_home: "Home",
+        nav_destination: "Destination",
+        nav_bookings: "Bookings",
+        nav_contact_us: "Contact Us",
+        hero_title: "Explore Hidden Gems of Jharkhand",
+        hero_description: "Jharkhand, the “Land of Forests,” is blessed with majestic waterfalls, lush hills, rich tribal culture, and sacred temples. From eco-adventures to spiritual journeys, it offers hidden gems waiting to be explored. Our platform brings all maps, guides, and experiences together to make your Jharkhand trip seamless and unforgettable.",
+        hero_explore_button: "⤷ EXPLORE",
+        destinations_title: "Welcome to Jharkhand Destinations",
+        wildlife_panel_title: "WILDLIFE",
+        devotion_panel_title: "DEVOTION",
+        adventure_panel_title: "ADVENTURE"
+      },
+      hi: {
+        nav_home: "होम",
+        nav_destination: "गंतव्य",
+        nav_bookings: "बुकिंग",
+        nav_contact_us: "हमसे संपर्क करें",
+        hero_title: "झारखंड के छिपे हुए रत्नों का अन्वेषण करें",
+        hero_description: "झारखंड, 'वनो की भूमि', majestic झरनों, हरे-भरे पहाड़ियों, समृद्ध आदिवासी संस्कृति और पवित्र मंदिरों से धन्य है। इको-एडवेंचर्स से लेकर आध्यात्मिक यात्राओं तक, यह ऐसे छिपे हुए रत्न प्रदान करता है जिनकी खोज की जानी बाकी है। हमारा मंच आपकी झारखंड यात्रा को सहज और अविस्मरणीय बनाने के लिए सभी नक्शे, गाइड और अनुभवों को एक साथ लाता है।",
+        hero_explore_button: "⤷ अन्वेषण करें",
+        destinations_title: "झारखंड के गंतव्य स्थलों में आपका स्वागत है",
+        wildlife_panel_title: "वन्यजीव",
+        devotion_panel_title: "भक्ति",
+        adventure_panel_title: "साहसिक"
+      },
+      or: {
+        nav_home: "ହୋମ୍",
+        nav_destination: "ଗନ୍ତବ୍ୟସ୍ଥଳ",
+        nav_bookings: "ବୁକିଂ",
+        nav_contact_us: "ଆମ ସହିତ ଯୋଗାଯୋଗ କରନ୍ତୁ",
+        hero_title: "ଝାଡଖଣ୍ଡର ଲୁକ୍କାୟିତ ରତ୍ନଗୁଡ଼ିକୁ ଅନୁସନ୍ଧାନ କରନ୍ତୁ",
+        hero_description: "ଝାଡଖଣ୍ଡ, 'ଜଙ୍ଗଲର ଭୂମି', ଭବ୍ୟ ଜଳପ୍ରପାତ, ସବୁଜ ପାହାଡ, ସମୃଦ୍ଧ ଆଦିବାସୀ ସଂସ୍କୃତି ଏବଂ ପବିତ୍ର ମନ୍ଦିରରେ ପରିପୂର୍ଣ୍ଣ। ଇକୋ-ଆଡଭେଞ୍ଚରରୁ ଆରମ୍ଭ କରି ଆଧ୍ୟାତ୍ମିକ ଯାତ୍ରା ପର୍ଯ୍ୟନ୍ତ, ଏହା ଅନୁସନ୍ଧାନ କରିବାକୁ ଅପେକ୍ଷା କରିଥିବା ଲୁକ୍କାୟିତ ରତ୍ନଗୁଡ଼ିକୁ ପ୍ରଦାନ କରେ। ଆମର ପ୍ଲାଟଫର୍ମ ଆପଣଙ୍କ ଝାଡଖଣ୍ଡ ଯାତ୍ରାକୁ ନିରବିଚ୍ଛିନ୍ନ ଏବଂ ଅବିସ୍ମରଣୀୟ କରିବା ପାଇଁ ସମସ୍ତ ମାନଚିତ୍ର, ଗାଇଡ୍ ଏବଂ ଅଭିଜ୍ଞତାକୁ ଏକାଠି ଆଣିଥାଏ।",
+        hero_explore_button: "⤷ ଅନୁସନ୍ଧାନ କରନ୍ତୁ",
+        destinations_title: "ଝାଡଖଣ୍ଡ ଗନ୍ତବ୍ୟସ୍ଥଳକୁ ସ୍ୱାଗତ",
+        wildlife_panel_title: "ବନ୍ୟଜୀବ",
+        devotion_panel_title: "ଭକ୍ତି",
+        adventure_panel_title: "ଦୁଃସାହସିକ"
+      },
+      mr: {
+        nav_home: "मुख्यपृष्ठ",
+        nav_destination: "गंतव्यस्थान",
+        nav_bookings: "बुकिंग",
+        nav_contact_us: "आमच्याशी संपर्क साधा",
+        hero_title: "झारखंडमधील लपलेले रत्ने शोधा",
+        hero_description: "झारखंड, 'जंगलांची भूमी', भव्य धबधबे, हिरवीगार टेकड्या, समृद्ध आदिवासी संस्कृती आणि पवित्र मंदिरांनी परिपूर्ण आहे. पर्यावरण-साहसांपासून ते आध्यात्मिक प्रवासांपर्यंत, हे लपलेले रत्ने शोधण्याची संधी देते. आमचे प्लॅटफॉर्म तुमच्या झारखंड प्रवासाला अखंड आणि अविस्मरणीय बनवण्यासाठी सर्व नकाशे, मार्गदर्शक आणि अनुभव एकत्र आणते.",
+        hero_explore_button: "⤷ अन्वेषण करा",
+        destinations_title: "झारखंडच्या गंतव्यस्थानांमध्ये आपले स्वागत आहे",
+        wildlife_panel_title: "वन्यजीव",
+        devotion_panel_title: "भक्ती",
+        adventure_panel_title: "साहसी"
+      }
+    };
+
+    function changeLanguage(langCode, langName) {
+      document.getElementById("selectedLangText").innerText = langName;
+      // Close dropdown
+      document.getElementById("customLangSelector").classList.remove("active");
+
+      // Apply translations
+      const elementsToTranslate = document.querySelectorAll('[data-translate]');
+      elementsToTranslate.forEach(element => {
+        const key = element.getAttribute('data-translate');
+        if (translations[langCode] && translations[langCode][key]) {
+          element.innerText = translations[langCode][key];
+        }
+      });
+
+      // Update the page's lang attribute
+      document.documentElement.lang = langCode;
+    }
+
+    // Set initial language on load (e.g., English)
+    document.addEventListener('DOMContentLoaded', () => {
+      changeLanguage('en', 'English');
+    });
+  </script>
+
+</body>
+</html>

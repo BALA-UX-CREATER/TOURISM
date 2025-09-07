@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Khandoli Hill - Jharkhand Tourism</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Roboto', sans-serif;
+      background: url("templebg.jpg")                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             ;
+      background-size: cover;
+    }
+
+    /* Navbar */
+    header {
+      background: rgba(0, 0, 0, 0.5);
+      padding: 1rem 0;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+    nav ul {
+      display: flex; justify-content: center; align-items: center;
+      list-style: none; gap: 20px;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    nav ul li a {
+      color: white; text-decoration: none; transition: color 0.3s;
+    }
+    nav ul li a:hover { color: #90ee90; }
+
+    /* Language Selector */
+    .custom-language-selector { position: relative; display: inline-block; margin-left: 20px; }
+    .current-language {
+      background: #40a840; color: white; border: none;
+      padding: 8px 15px; border-radius: 6px; cursor: pointer;
+      display: flex; align-items: center; gap: 5px; font-size: 14px;
+    }
+    .current-language::after { content: '▼'; font-size: 10px; margin-left: 5px; }
+    .language-dropdown {
+      display: none; position: absolute; background-color: #f9f9f9;
+      min-width: 160px; box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
+      z-index: 1; border-radius: 6px; overflow: hidden; margin-top: 5px;
+    }
+    .language-dropdown a {
+      color: black; padding: 12px 16px; text-decoration: none;
+      display: block; font-size: 14px;
+    }
+    .language-dropdown a:hover { background-color: #f1f1f1; color: #40a840; }
+    .custom-language-selector.active .language-dropdown { display: block; }
+
+    /* Layout */
+    .destination-layout {
+      max-width: 1200px; margin: 40px auto; padding: 20px;
+      display: grid; grid-template-columns: 2fr 1fr; gap: 30px;
+    }
+    .left-section h2 { font-size: 28px; margin-bottom: 10px; color: #40a840; }
+    .left-section p { font-size: 16px; line-height: 1.6; margin-bottom: 20px;color:white; }
+
+    .info-box {
+      background: rgba(255, 255, 255, 0.95);
+      padding: 20px; border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+    .info-box h3 { margin-bottom: 12px; color: #333; }
+    .info-box ul { list-style: none; padding: 0; }
+    .info-box ul li {
+      padding: 6px 0; border-bottom: 1px solid #ddd;
+      font-size: 15px; color: #333;
+    }
+    .info-box ul li strong { color: #444; margin-right: 6px; }
+
+    /* Right section */
+    .right-section img {
+      width: 100%; height: 250px; border-radius: 12px;
+      object-fit: cover; margin-bottom: 20px; border: 1px solid #ddd;
+    }
+    .right-section iframe {
+      width: 100%; height: 250px; border-radius: 12px; border: 1px solid #ddd;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Destination</a></li>
+        <li><a href="#">Bookings</a></li>
+        <li><a href="#">Contact Us</a></li>
+        <li>
+          <div class="custom-language-selector" id="customLangSelector">
+            <button class="current-language" onclick="toggleLanguageDropdown()">
+              <span id="selectedLangText">English</span>
+            </button>
+            <div class="language-dropdown">
+              <a href="#" onclick="changeLanguage('en', 'English')">English</a>
+              <a href="#" onclick="changeLanguage('hi', 'Hindi')">Hindi</a>
+              <a href="#" onclick="changeLanguage('or', 'Odia')">Odia</a>
+              <a href="#" onclick="changeLanguage('mr', 'Marathi')">Marathi</a>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </nav>
+  </header>
+
+  <section class="destination-layout">
+    <!-- Left section -->
+    <div class="left-section">
+      <h2 data-translate="khandoli_title">Khandoli Hill</h2>
+      <p data-translate="khandoli_description">
+        Located in Giridih district, Khandoli Hill is famous for its adventurous activities and scenic beauty 
+        around Khandoli Dam and Lake. From rock climbing to boating, it offers thrilling experiences with stunning views.
+      </p>
+
+      <div class="info-box">
+        <h3 data-translate="travel_info_title">Travel Information</h3>
+        <ul>
+          <li data-translate="location_info"><strong>Location:</strong> Giridih, Jharkhand</li>
+          <li data-translate="hotels_info"><strong>Hotels:</strong> Resorts & lodges within 3–5 km</li>
+          <li data-translate="transport_info"><strong>Transport:</strong> Taxi, Bus, Auto available</li>
+          <li data-translate="season_info"><strong>Best Season:</strong> October – March</li>
+          <li data-translate="guides_info"><strong>Adventure:</strong> Rock climbing, boating, zipline</li>
+          <li data-translate="emergency_info"><strong>Emergency:</strong> +91-9876543210</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Right section -->
+    <div class="right-section">
+      <img src="./image/adventure1.jpg" alt="Khandoli Hill">
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3683.832!2d86.303!3d24.188!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39f433ab66b3bb1f%3A0x84a6ad0c3d7b!2sKhandoli%20Park!5e0!3m2!1sen!2sin!4v1694000000000" allowfullscreen="" loading="lazy"></iframe>
+    </div>
+  </section>
+
+  <script>
+    function toggleLanguageDropdown() {
+      document.getElementById("customLangSelector").classList.toggle("active");
+    }
+    window.onclick = function(e) {
+      if (!e.target.matches('.current-language') && !e.target.matches('#selectedLangText')) {
+        document.getElementById("customLangSelector").classList.remove("active");
+      }
+    }
+
+    const translations = {
+      en: {
+        khandoli_title: "Khandoli Hill",
+        khandoli_description: "Located in Giridih district, Khandoli Hill is famous for its adventurous activities and scenic beauty around Khandoli Dam and Lake. From rock climbing to boating, it offers thrilling experiences with stunning views.",
+        travel_info_title: "Travel Information",
+        location_info: "<strong>Location:</strong> Giridih, Jharkhand",
+        hotels_info: "<strong>Hotels:</strong> Resorts & lodges within 3–5 km",
+        transport_info: "<strong>Transport:</strong> Taxi, Bus, Auto available",
+        season_info: "<strong>Best Season:</strong> October – March",
+        guides_info: "<strong>Adventure:</strong> Rock climbing, boating, zipline",
+        emergency_info: "<strong>Emergency:</strong> +91-9876543210"
+      },
+      hi: {
+        khandoli_title: "खंडोली पहाड़ी",
+        khandoli_description: "गिरिडीह जिले में स्थित खंडोली पहाड़ी अपनी साहसिक गतिविधियों और खंडोली बांध व झील की सुंदरता के लिए प्रसिद्ध है। रॉक क्लाइम्बिंग से लेकर नौकायन तक, यह रोमांचक अनुभव प्रदान करता है।",
+        travel_info_title: "यात्रा जानकारी",
+        location_info: "<strong>स्थान:</strong> गिरिडीह, झारखंड",
+        hotels_info: "<strong>होटल:</strong> 3–5 किमी के भीतर रिसॉर्ट और लॉज",
+        transport_info: "<strong>परिवहन:</strong> टैक्सी, बस, ऑटो उपलब्ध",
+        season_info: "<strong>श्रेष्ठ मौसम:</strong> अक्टूबर – मार्च",
+        guides_info: "<strong>रोमांच:</strong> रॉक क्लाइम्बिंग, नौकायन, ज़िपलाइन",
+        emergency_info: "<strong>आपातकाल:</strong> +91-9876543210"
+      },
+      or: {
+        khandoli_title: "ଖଣ୍ଡୋଳି ପାହାଡ଼",
+        khandoli_description: "ଗିରିଡିହ ଜିଲ୍ଲାରେ ଅବସ୍ଥିତ, ଖଣ୍ଡୋଳି ପାହାଡ଼ ଏହାର ସାହସିକ କାର୍ଯ୍ୟକଳାପ ଏବଂ ବନ୍ଧ ଓ ଝିଲ୍ଲାର ସୌନ୍ଦର୍ଯ୍ୟ ପାଇଁ ପ୍ରସିଦ୍ଧ। ପାହାଡ଼ ଚଢ଼ିବାରୁ ଆରମ୍ଭ କରି ନୌକା ବିହାର ପର୍ଯ୍ୟନ୍ତ, ଏହା ଅଭିଜ୍ଞତା ପ୍ରଦାନ କରେ।",
+        travel_info_title: "ଭ୍ରମଣ ସୂଚନା",
+        location_info: "<strong>ଅବସ୍ଥାନ:</strong> ଗିରିଡିହ, ଝାରଖଣ୍ଡ",
+        hotels_info: "<strong>ହୋଟେଲ୍:</strong> 3–5 କି.ମି. ମଧ୍ୟରେ ରିସର୍ଟ ଓ ଲଜ୍",
+        transport_info: "<strong>ପରିବହନ:</strong> ଟାକ୍ସି, ବସ୍, ଅଟୋ ଉପଲବ୍ଧ",
+        season_info: "<strong>ଶ୍ରେଷ୍ଠ ଋତୁ:</strong> ଅକ୍ଟୋବର – ମାର୍ଚ୍ଚ",
+        guides_info: "<strong>ସାହସ:</strong> ପାହାଡ଼ ଚଢ଼ିବା, ନୌକା ବିହାର, ଜିପ୍ଲାଇନ୍",
+        emergency_info: "<strong>ଜରୁରୀ:</strong> +91-9876543210"
+      },
+      mr: {
+        khandoli_title: "खंडोली टेकडी",
+        khandoli_description: "गिरिडीह जिल्यातील खंडोली टेकडी ही तिच्या साहसी क्रिया आणि धरण व तलावाच्या सौंदर्यासाठी प्रसिद्ध आहे. रॉक क्लायंबिंगपासून बोटींगपर्यंत, येथे रोमांचक अनुभव मिळतात.",
+        travel_info_title: "प्रवास माहिती",
+        location_info: "<strong>स्थान:</strong> गिरिडीह, झारखंड",
+        hotels_info: "<strong>हॉटेल्स:</strong> 3–5 कि.मी. मधील रिसॉर्ट्स व लॉजेस",
+        transport_info: "<strong>वाहतूक:</strong> टॅक्सी, बस, ऑटो उपलब्ध",
+        season_info: "<strong>सर्वोत्तम हंगाम:</strong> ऑक्टोबर – मार्च",
+        guides_info: "<strong>साहस:</strong> रॉक क्लायंबिंग, बोटींग, झिपलाइन",
+        emergency_info: "<strong>आपत्कालीन:</strong> +91-9876543210"
+      }
+    };
+
+    function changeLanguage(langCode, langName) {
+      document.getElementById("selectedLangText").innerText = langName;
+      document.getElementById("customLangSelector").classList.remove("active");
+      document.querySelectorAll('[data-translate]').forEach(el => {
+        const key = el.getAttribute('data-translate');
+        if (translations[langCode][key]) el.innerHTML = translations[langCode][key];
+      });
+      document.documentElement.lang = langCode;
+    }
+    document.addEventListener('DOMContentLoaded', () => changeLanguage('en', 'English'));
+  </script>
+</body>
+</html>

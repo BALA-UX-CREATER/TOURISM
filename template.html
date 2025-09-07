@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jharkhand Tourism Wildlife</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Roboto', sans-serif;
+      color: white;
+      background: url('templebg.jpg') no-repeat center center fixed;
+      background-size: cover;
+    }
+
+    /* Navbar */
+    header {
+      background: rgba(0, 0, 0, 0.5);
+      padding: 1rem 0;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    nav ul {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      list-style: none;
+      gap: 20px;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    nav ul li {
+      margin: 0 10px;
+    }
+
+    nav ul li a {
+      color: white;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    nav ul li a:hover {
+      color: #90ee90;
+    }
+
+    /* Custom Language Selector Styles */
+    .custom-language-selector {
+      position: relative;
+      display: inline-block;
+      margin-left: 20px; /* Adjust as needed for spacing */
+    }
+
+    .current-language {
+      background: #40a840;
+      color: white;
+      border: none;
+      padding: 8px 15px;
+      border-radius: 6px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 14px;
+    }
+
+    .current-language::after {
+      content: '▼'; /* Dropdown arrow */
+      font-size: 10px;
+      margin-left: 5px;
+    }
+
+    .language-dropdown {
+      display: none;
+      position: absolute;
+      background-color: #f9f9f9;
+      min-width: 160px;
+      box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+      z-index: 1;
+      border-radius: 6px;
+      overflow: hidden;
+      margin-top: 5px;
+    }
+
+    .language-dropdown a {
+      color: black;
+      padding: 12px 16px;
+      text-decoration: none;
+      display: block;
+      font-size: 14px;
+    }
+
+    .language-dropdown a:hover {
+      background-color: #f1f1f1;
+      color: #40a840;
+    }
+
+    .custom-language-selector.active .language-dropdown {
+      display: block;
+    }
+
+
+    .destination-layout {
+      max-width: 1200px;
+      margin: 40px auto;
+      padding: 20px;
+      display: grid;
+      grid-template-columns: 2fr 1fr; /* left big, right small */
+      gap: 30px;
+    }
+
+    /* Left section */
+    .left-section h2 {
+      font-size: 28px;
+      margin-bottom: 10px;
+      color: #40a840;
+    }
+
+    .left-section p {
+      font-size: 16px;
+      line-height: 1.6;
+      margin-bottom: 20px;
+    }
+
+    .info-box {
+      background: rgba(255, 255, 255, 0.95);
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    .info-box h3 {
+      margin-bottom: 12px;
+      color: #333;
+    }
+
+    .info-box ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .info-box ul li {
+      padding: 6px 0;
+      border-bottom: 1px solid #ddd;
+      font-size: 15px;
+      color: #333;
+    }
+
+    .info-box ul li strong {
+      color: #444;
+      margin-right: 6px;
+    }
+
+    /* Right section */
+    .right-section img {
+      width: 100%;
+      height: 250px;
+      border-radius: 12px;
+      object-fit: cover;
+      margin-bottom: 20px;
+      border: 1px solid #ddd;
+    }
+
+    .right-section iframe {
+      width: 100%;
+      height: 250px;
+      border-radius: 12px;
+      border: 1px solid #ddd;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Destination</a></li>
+        <li><a href="#">Bookings</a></li>
+        <li><a href="#">Contact Us</a></li>
+        <li class="language-option">
+          <div class="custom-language-selector" id="customLangSelector">
+            <button class="current-language" onclick="toggleLanguageDropdown()">
+              <span id="selectedLangText">English</span>
+            </button>
+            <div class="language-dropdown">
+              <a href="#" data-lang="en" onclick="changeLanguage('en', 'English')">English</a>
+              <a href="#" data-lang="hi" onclick="changeLanguage('hi', 'Hindi')">Hindi</a>
+              <a href="#" data-lang="or" onclick="changeLanguage('or', 'Odia')">Odia</a>
+              <a href="#" data-lang="mr" onclick="changeLanguage('mr', 'Marathi')">Marathi</a>
+              <!-- Add more languages as needed -->
+            </div>
+          </div>
+        </li>
+      </ul>
+    </nav>
+  </header>
+
+  <section class="destination-layout">
+    <!-- Left section -->
+    <div class="left-section">
+      <h2 data-translate="dassam_falls_title">Dassam Falls</h2>
+      <p data-translate="dassam_falls_description">
+        Dassam Falls, located near Ranchi, is a stunning waterfall surrounded by 
+        forests and rocky landscapes. It’s a popular picnic spot and offers 
+        breathtaking views, especially during monsoon.
+      </p>
+
+      <div class="info-box">
+        <h3 data-translate="travel_info_title">Travel Information</h3>
+        <ul>
+          <li data-translate="location_info"><strong>Location:</strong> J. Bus Stand → Dassam Falls</li>
+          <li data-translate="hotels_info"><strong>Hotels:</strong> Nearby hotels within 5 km</li>
+          <li data-translate="transport_info"><strong>Transport:</strong> Bus, Taxi, Auto available</li>
+          <li data-translate="season_info"><strong>Season:</strong> October – March</li>
+          <li data-translate="guides_info"><strong>Guides:</strong> Local guides available</li>
+          <li data-translate="emergency_info"><strong>Emergency:</strong> +91-1234567890</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Right section -->
+    <div class="right-section">
+      <img src="wildlife.jpg" alt="Destination Photo">
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5876.09661369339!2d79.53934615660717!3d12.092722334186464!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a534f05d215b803%3A0x3808c9960ec1bdde!2sSalaimadam!5e0!3m2!1sen!2sin!4v1757180667613!5m2!1sen!2sin" allowfullscreen="" loading="lazy"></iframe>
+    </div>
+  </section>
+
+  <script>
+    // Simple toggle for the dropdown
+    function toggleLanguageDropdown() {
+      document.getElementById("customLangSelector").classList.toggle("active");
+    }
+
+    // Close the dropdown if the user clicks outside of it
+    window.onclick = function(event) {
+      if (!event.target.matches('.current-language') && !event.target.matches('#selectedLangText')) {
+        var dropdowns = document.getElementsByClassName("custom-language-selector");
+        for (var i = 0; i < dropdowns.length; i++) {
+          var openDropdown = dropdowns[i];
+          if (openDropdown.classList.contains('active')) {
+            openDropdown.classList.remove('active');
+          }
+        }
+      }
+    }
+
+    // --- Placeholder for actual translation logic ---
+    // In a real application, you would fetch translations from a data source (e.g., JSON file, API)
+    // or use a more sophisticated client-side translation library.
+
+    const translations = {
+      en: {
+        dassam_falls_title: "Dassam Falls",
+        dassam_falls_description: "Dassam Falls, located near Ranchi, is a stunning waterfall surrounded by forests and rocky landscapes. It’s a popular picnic spot and offers breathtaking views, especially during monsoon.",
+        travel_info_title: "Travel Information",
+        location_info: "<strong>Location:</strong> J. Bus Stand → Dassam Falls",
+        hotels_info: "<strong>Hotels:</strong> Nearby hotels within 5 km",
+        transport_info: "<strong>Transport:</strong> Bus, Taxi, Auto available",
+        season_info: "<strong>Season:</strong> October – March",
+        guides_info: "<strong>Guides:</strong> Local guides available",
+        emergency_info: "<strong>Emergency:</strong> +91-1234567890"
+      },
+      hi: {
+        dassam_falls_title: "दस्सम जलप्रपात",
+        dassam_falls_description: "दस्सम जलप्रपात, रांची के पास स्थित एक शानदार झरना है जो जंगलों और पथरीले परिदृश्यों से घिरा हुआ है। यह एक लोकप्रिय पिकनिक स्थल है और विशेष रूप से मानसून के दौरान लुभावने दृश्य प्रस्तुत करता है।",
+        travel_info_title: "यात्रा जानकारी",
+        location_info: "<strong>स्थान:</strong> जे. बस स्टैंड → दस्सम जलप्रपात",
+        hotels_info: "<strong>होटल:</strong> 5 किमी के भीतर पास के होटल",
+        transport_info: "<strong>परिवहन:</strong> बस, टैक्सी, ऑटो उपलब्ध",
+        season_info: "<strong>मौसम:</strong> अक्टूबर – मार्च",
+        guides_info: "<strong>गाइड:</strong> स्थानीय गाइड उपलब्ध",
+        emergency_info: "<strong>आपातकालीन:</strong> +91-1234567890"
+      },
+      or: {
+        dassam_falls_title: "ଦଶମ ପ୍ରପାତ",
+        dassam_falls_description: "ରାଞ୍ଚି ନିକଟରେ ଅବସ୍ଥିତ ଦଶମ ପ୍ରପାତ, ଜଙ୍ଗଲ ଏବଂ ପଥର ଭୂଭାଗ ଦ୍ୱାରା ଘେରି ରହିଥିବା ଏକ ଚମତ୍କାର ଜଳପ୍ରପାତ। ଏହା ଏକ ଲୋକପ୍ରିୟ ପିକନିକ୍ ସ୍ଥାନ ଏବଂ ବିଶେଷ କରି ମୌସୁମୀ ସମୟରେ ମନୋରମ ଦୃଶ୍ୟ ପ୍ରଦାନ କରେ।",
+        travel_info_title: "ଯାତ୍ରା ସୂଚନା",
+        location_info: "<strong>ସ୍ଥାନ:</strong> ଜେ. ବସ୍ ଷ୍ଟାଣ୍ଡ → ଦଶମ ପ୍ରପାତ",
+        hotels_info: "<strong>ହୋଟେଲ୍:</strong> 5 କିମି ମଧ୍ୟରେ ନିକଟସ୍ଥ ହୋଟେଲ୍",
+        transport_info: "<strong>ପରିବହନ:</strong> ବସ୍, ଟାକ୍ସି, ଅଟୋ ଉପଲବ୍ଧ",
+        season_info: "<strong>ଋତୁ:</strong> ଅକ୍ଟୋବର – ମାର୍ଚ୍ଚ",
+        guides_info: "<strong>ଗାଇଡ୍:</strong> ସ୍ଥାନୀୟ ଗାଇଡ୍ ଉପଲବ୍ଧ",
+        emergency_info: "<strong>ଜରୁରୀକାଳୀନ:</strong> +91-1234567890"
+      },
+      mr: {
+        dassam_falls_title: "दस्सम धबधबा",
+        dassam_falls_description: "रांचीजवळ असलेला दस्सम धबधबा, जंगल आणि खडकाळ प्रदेशाने वेढलेला एक सुंदर धबधबा आहे. हे एक लोकप्रिय पिकनिक स्थळ आहे आणि विशेषतः मान्सूनमध्ये चित्तथरारक दृश्ये देतो.",
+        travel_info_title: "प्रवास माहिती",
+        location_info: "<strong>स्थान:</strong> जे. बस स्टँड → दस्सम धबधबा",
+        hotels_info: "<strong>हॉटेल:</strong> 5 किमीच्या आत जवळची हॉटेल्स",
+        transport_info: "<strong>वाहतूक:</strong> बस, टॅक्सी, ऑटो उपलब्ध",
+        season_info: "<strong>हंगाम:</strong> ऑक्टोबर – मार्च",
+        guides_info: "<strong>गाईड्स:</strong> स्थानिक गाईड्स उपलब्ध",
+        emergency_info: "<strong>आपत्कालीन:</strong> +91-1234567890"
+      }
+    };
+
+    function changeLanguage(langCode, langName) {
+      document.getElementById("selectedLangText").innerText = langName;
+      // Close dropdown
+      document.getElementById("customLangSelector").classList.remove("active");
+
+      // Apply translations
+      const elementsToTranslate = document.querySelectorAll('[data-translate]');
+      elementsToTranslate.forEach(element => {
+        const key = element.getAttribute('data-translate');
+        if (translations[langCode] && translations[langCode][key]) {
+          // Use innerHTML for content that might contain strong tags (like Location)
+          element.innerHTML = translations[langCode][key];
+        }
+      });
+
+      // Update the page's lang attribute
+      document.documentElement.lang = langCode;
+    }
+
+    // Set initial language on load (e.g., English)
+    document.addEventListener('DOMContentLoaded', () => {
+      changeLanguage('en', 'English');
+    });
+  </script>
+</body>
+</html>

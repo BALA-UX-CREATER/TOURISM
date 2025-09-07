@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jharkhand Tourism Wildlife</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Roboto', sans-serif;
+      color: white;
+      background: url('templebg.jpg') no-repeat center center fixed;
+      background-size:cover;
+    }
+
+    /* Navbar */
+    header {
+      background: rgba(0, 0, 0, 0.5);
+      padding: 1rem 0; /* Adjusted padding for better fit with language selector */
+      position: sticky;
+      top: 0;
+      z-index: 1000; /* Added z-index to ensure navbar is above other content */
+    }
+
+    nav ul {
+      display: flex;
+      justify-content: center;
+      align-items: center; /* Align items vertically */
+      list-style: none;
+      gap: 20px;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    nav ul li {
+      margin: 0 10px; /* Adjusted margin */
+    }
+
+    nav ul li a {
+      color: white;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    nav ul li a:hover {
+      color: #90ee90;
+    }
+
+    /* Custom Language Selector Styles (Copied from your first example) */
+    .custom-language-selector {
+      position: relative;
+      display: inline-block;
+      margin-left: 20px; /* Adjust as needed for spacing */
+    }
+
+    .current-language {
+      background: #40a840;
+      color: white;
+      border: none;
+      padding: 8px 15px;
+      border-radius: 6px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 14px;
+    }
+
+    .current-language::after {
+      content: '▼'; /* Dropdown arrow */
+      font-size: 10px;
+      margin-left: 5px;
+    }
+
+    .language-dropdown {
+      display: none;
+      position: absolute;
+      background-color: #f9f9f9;
+      min-width: 160px;
+      box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+      z-index: 1;
+      border-radius: 6px;
+      overflow: hidden;
+      margin-top: 5px;
+    }
+
+    .language-dropdown a {
+      color: black;
+      padding: 12px 16px;
+      text-decoration: none;
+      display: block;
+      font-size: 14px;
+    }
+
+    .language-dropdown a:hover {
+      background-color: #f1f1f1;
+      color: #40a840;
+    }
+
+    .custom-language-selector.active .language-dropdown {
+      display: block;
+    }
+
+    .destination-layout {
+      max-width: 1200px;
+      margin: 40px auto;
+      padding: 20px;
+      display: grid;
+      grid-template-columns: 2fr 1fr; /* left big, right small */
+      gap: 30px;
+    }
+
+    /* Left side */
+    .left-section h2 {
+      font-size: 28px;
+      margin-bottom: 10px;
+      color: #40a840;
+    }
+
+    .left-section p {
+      font-size: 16px;
+      line-height: 1.6;
+      margin-bottom: 20px;
+    }
+
+    .info-box {
+      background: rgba(255,255,255,0.95);
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    .info-box h3 {
+      margin-bottom: 12px;
+      color: #333;
+    }
+
+    .info-box ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .info-box ul li {
+      padding: 6px 0;
+      border-bottom: 1px solid #ddd; /* Adjusted border color */
+      font-size: 15px;
+      color: #333;
+    }
+
+    .info-box ul li strong {
+      color: #444;
+      margin-right: 6px;
+    }
+
+    /* Right side */
+    .right-section img {
+      width: 100%;
+      height: 250px;
+      border-radius: 12px;
+      object-fit: cover;
+      margin-bottom: 20px;
+      border: 1px solid #ddd;
+    }
+
+    .right-section iframe {
+      width: 100%;
+      height: 250px;
+      border-radius: 12px;
+      border: 1px solid #ddd;
+    }
+  </style>
+</head>
+<body>
+     <header>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="destination.html">Destination</a></li>
+        <li><a href="#">Bookings</a></li>
+        <li><a href="#">Contact Us</a></li>
+        <li class="language-option">
+          <div class="custom-language-selector" id="customLangSelector">
+            <button class="current-language" onclick="toggleLanguageDropdown()">
+              <span id="selectedLangText">English</span>
+            </button>
+            <div class="language-dropdown">
+              <a href="#" data-lang="en" onclick="changeLanguage('en', 'English')">English</a>
+              <a href="#" data-lang="hi" onclick="changeLanguage('hi', 'Hindi')">Hindi</a>
+              <a href="#" data-lang="or" onclick="changeLanguage('or', 'Odia')">Odia</a>
+              <a href="#" data-lang="mr" onclick="changeLanguage('mr', 'Marathi')">Marathi</a>
+              <!-- Add more languages as needed -->
+            </div>
+          </div>
+        </li>
+      </ul>
+    </nav>
+  </header>
+  <div>
+    <section class="destination-layout">
+    <!-- Left section -->
+    <div class="left-section">
+      <h2 data-translate="angrabari_title">Angrabari Temple Complex (Amreshwar Dham, Khunti)</h2>
+      <p data-translate="angrabari_description">
+      The Angrabari Temple Complex, also known as Amreshwar Dham, is a famous spiritual site located in Khunti district of Jharkhand. Dedicated primarily to Lord Shiva, the complex also houses temples of Lord Ganesha, Goddess Parvati, and Lord Hanuman. It is surrounded by natural greenery, giving the place a peaceful and divine atmosphere. The temple is maintained by the Ramakrishna Mission, which ensures cleanliness and spiritual discipline in the area. This place attracts a large number of devotees, especially during Shravan month and Maha Shivaratri.
+      </p>
+
+      <div class="info-box">
+        <h3 data-translate="travel_info_title">Travel Information</h3>
+        <ul>
+          <li data-translate="location_info"><strong>Location:</strong> Ranchi → Angrabari Temple Complex</li>
+          <li data-translate="hotels_info"><strong>Hotels:</strong> Milan Place, Rajasthan Bhawan, The Candy Homes</li>
+          <li data-translate="transport_info"><strong>Transport:</strong> Bus, Taxi, Auto available</li>
+          <li data-translate="season_info"><strong>Season:</strong> (November - February)</li>
+          <li data-translate="guides_info"><strong>Guides:</strong> Local guides available</li>
+          <li data-translate="emergency_info"><strong>Emergency:</strong> 🚓 100 – Police, 🚑 108 – Ambulance, 🔥 101 – Fire Service</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Right section -->
+    <div class="right-section">
+      <img src="./image/D4.jpg" alt="Destination Photo">
+     <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d58747.76349678768!2d85.12791752815247!3d23.0334922586605!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39f53d05314e472f%3A0x4e24ea84cbc00645!2sAngrabari%20Mandir%20Khunti!5e0!3m2!1sen!2sin!4v1757212312328!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+  </section>
+  </div>
+
+  <script>
+    // Simple toggle for the dropdown
+    function toggleLanguageDropdown() {
+      document.getElementById("customLangSelector").classList.toggle("active");
+    }
+
+    // Close the dropdown if the user clicks outside of it
+    window.onclick = function(event) {
+      if (!event.target.matches('.current-language') && !event.target.matches('#selectedLangText')) {
+        var dropdowns = document.getElementsByClassName("custom-language-selector");
+        for (var i = 0; i < dropdowns.length; i++) {
+          var openDropdown = dropdowns[i];
+          if (openDropdown.classList.contains('active')) {
+            openDropdown.classList.remove('active');
+          }
+        }
+      }
+    }
+
+    const translations = {
+      en: {
+        angrabari_title: "Angrabari Temple Complex (Amreshwar Dham, Khunti)",
+        angrabari_description: "The Angrabari Temple Complex, also known as Amreshwar Dham, is a famous spiritual site located in Khunti district of Jharkhand. Dedicated primarily to Lord Shiva, the complex also houses temples of Lord Ganesha, Goddess Parvati, and Lord Hanuman. It is surrounded by natural greenery, giving the place a peaceful and divine atmosphere. The temple is maintained by the Ramakrishna Mission, which ensures cleanliness and spiritual discipline in the area. This place attracts a large number of devotees, especially during Shravan month and Maha Shivaratri.",
+        travel_info_title: "Travel Information",
+        location_info: "<strong>Location:</strong> Ranchi → Angrabari Temple Complex",
+        hotels_info: "<strong>Hotels:</strong> Milan Place, Rajasthan Bhawan, The Candy Homes",
+        transport_info: "<strong>Transport:</strong> Bus, Taxi, Auto available",
+        season_info: "<strong>Season:</strong> (November - February)",
+        guides_info: "<strong>Guides:</strong> Local guides available",
+        emergency_info: "<strong>Emergency:</strong> 🚓 100 – Police, 🚑 108 – Ambulance, 🔥 101 – Fire Service"
+      },
+      hi: {
+        angrabari_title: "अंगराबारी मंदिर परिसर (अमरेश्वर धाम, खूंटी)",
+        angrabari_description: "अंगराबारी मंदिर परिसर, जिसे अमरेश्वर धाम के नाम से भी जाना जाता है, झारखंड के खूंटी जिले में स्थित एक प्रसिद्ध आध्यात्मिक स्थल है। मुख्य रूप से भगवान शिव को समर्पित, इस परिसर में भगवान गणेश, देवी पार्वती और भगवान हनुमान के मंदिर भी हैं। यह प्राकृतिक हरियाली से घिरा हुआ है, जो इस स्थान को शांतिपूर्ण और दिव्य वातावरण प्रदान करता है। मंदिर का रखरखाव रामकृष्ण मिशन द्वारा किया जाता है, जो क्षेत्र में स्वच्छता और आध्यात्मिक अनुशासन सुनिश्चित करता है। यह स्थान बड़ी संख्या में भक्तों को आकर्षित करता है, विशेष रूप से श्रावण मास और महाशिवरात्रि के दौरान।",
+        travel_info_title: "यात्रा जानकारी",
+        location_info: "<strong>स्थान:</strong> रांची → अंगराबारी मंदिर परिसर",
+        hotels_info: "<strong>होटल:</strong> मिलन प्लेस, राजस्थान भवन, द कैंडी होम्स",
+        transport_info: "<strong>परिवहन:</strong> बस, टैक्सी, ऑटो उपलब्ध",
+        season_info: "<strong>मौसम:</strong> (नवंबर - फरवरी)",
+        guides_info: "<strong>गाइड:</strong> स्थानीय गाइड उपलब्ध",
+        emergency_info: "<strong>आपातकालीन:</strong> 🚓 100 – पुलिस, 🚑 108 – एम्बुलेंस, 🔥 101 – अग्निशमन सेवा"
+      },
+      or: {
+        angrabari_title: "ଅଙ୍ଗରାବାରୀ ମନ୍ଦିର ପରିସର (ଅମରେଶ୍ୱର ଧାମ, ଖୁଣ୍ଟି)",
+        angrabari_description: "ଅଙ୍ଗରାବାରୀ ମନ୍ଦିର ପରିସର, ଯାହା ଅମରେଶ୍ୱର ଧାମ ଭାବରେ ମଧ୍ୟ ଜଣାଶୁଣା, ଝାଡ଼ଖଣ୍ଡର ଖୁଣ୍ଟି ଜିଲ୍ଲାରେ ଅବସ୍ଥିତ ଏକ ପ୍ରସିଦ୍ଧ ଆଧ୍ୟାତ୍ମିକ ସ୍ଥଳ। ମୁଖ୍ୟତଃ ଭଗବାନ ଶିବଙ୍କୁ ସମର୍ପିତ ଏହି ପରିସରରେ ଭଗବାନ ଗଣେଶ, ଦେବୀ ପାର୍ବତୀ ଏବଂ ଭଗବାନ ହନୁମାନଙ୍କ ମନ୍ଦିର ମଧ୍ୟ ରହିଛି। ଏହା ପ୍ରାକୃତିକ ସବୁଜିମା ଦ୍ୱାରା ଘେରି ରହିଛି, ଯାହା ଏହି ସ୍ଥାନକୁ ଏକ ଶାନ୍ତ ଏବଂ ଦିବ୍ୟ ବାତାବରଣ ପ୍ରଦାନ କରେ। ମନ୍ଦିରଟି ରାମକୃଷ୍ଣ ମିଶନ ଦ୍ୱାରା ପରିଚାଳିତ, ଯାହା ଏହି ଅଞ୍ଚଳରେ ପରିଷ୍କାର-ପରିଚ୍ଛନ୍ନତା ଏବଂ ଆଧ୍ୟାତ୍ମିକ ଶୃଙ୍ଖଳା ସୁନିଶ୍ଚିତ କରେ। ଏହି ସ୍ଥାନ ବିଶେଷ କରି ଶ୍ରାବଣ ମାସ ଏବଂ ମହାଶିବରାତ୍ରି ସମୟରେ ବହୁ ସଂଖ୍ୟକ ଭକ୍ତଙ୍କୁ ଆକର୍ଷିତ କରେ।",
+        travel_info_title: "ଯାତ୍ରା ସୂଚନା",
+        location_info: "<strong>ସ୍ଥାନ:</strong> ରାଞ୍ଚି → ଅଙ୍ଗରାବାରୀ ମନ୍ଦିର ପରିସର",
+        hotels_info: "<strong>ହୋଟେଲ୍:</strong> ମିଲାନ ପ୍ଲେସ୍, ରାଜସ୍ଥାନ ଭବନ, ଦ କାଣ୍ଡି ହୋମ୍ସ",
+        transport_info: "<strong>ପରିବହନ:</strong> ବସ୍, ଟାକ୍ସି, ଅଟୋ ଉପଲବ୍ଧ",
+        season_info: "<strong>ଋତୁ:</strong> (ନଭେମ୍ବର - ଫେବୃଆରୀ)",
+        guides_info: "<strong>ଗାଇଡ୍:</strong> ସ୍ଥାନୀୟ ଗାଇଡ୍ ଉପଲବ୍ଧ",
+        emergency_info: "<strong>ଜରୁରୀକାଳୀନ:</strong> 🚓 100 – ପୋଲିସ୍, 🚑 108 – ଆମ୍ବୁଲାନ୍ସ, 🔥 101 – ଅଗ୍ନିଶମ ସେବା"
+      },
+      mr: {
+        angrabari_title: "अंगराबारी मंदिर संकुल (अमरेश्वर धाम, खुंटी)",
+        angrabari_description: "अंगराबारी मंदिर संकुल, ज्याला अमरेश्वर धाम असेही म्हणतात, झारखंडमधील खुंटी जिल्ह्यात स्थित एक प्रसिद्ध आध्यात्मिक स्थळ आहे. प्रामुख्याने भगवान शिवाला समर्पित असलेले हे संकुल भगवान गणेश, देवी पार्वती आणि भगवान हनुमान यांच्या मंदिरांचाही समावेश करते. ते नैसर्गिक हिरवळने वेढलेले आहे, ज्यामुळे या ठिकाणाला शांत आणि दैवी वातावरण मिळते. या मंदिराची देखरेख रामकृष्ण मिशनद्वारे केली जाते, जे या भागात स्वच्छता आणि आध्यात्मिक शिस्त सुनिश्चित करते. हे ठिकाण मोठ्या संख्येने भाविकांना आकर्षित करते, विशेषतः श्रावण महिना आणि महाशिवरात्री दरम्यान.",
+        travel_info_title: "प्रवास माहिती",
+        location_info: "<strong>स्थान:</strong> रांची → अंगराबारी मंदिर संकुल",
+        hotels_info: "<strong>हॉटेल:</strong> मिलान प्लेस, राजस्थान भवन, द कँडी होम्स",
+        transport_info: "<strong>वाहतूक:</strong> बस, टॅक्सी, ऑटो उपलब्ध",
+        season_info: "<strong>हंगाम:</strong> (नोव्हेंबर - फेब्रुवारी)",
+        guides_info: "<strong>गाईड्स:</strong> स्थानिक गाईड्स उपलब्ध",
+        emergency_info: "<strong>आपत्कालीन:</strong> 🚓 100 – पोलीस, 🚑 108 – रुग्णवाहिका, 🔥 101 – अग्निशमन सेवा"
+      }
+    };
+
+    function changeLanguage(langCode, langName) {
+      document.getElementById("selectedLangText").innerText = langName;
+      // Close dropdown
+      document.getElementById("customLangSelector").classList.remove("active");
+
+      // Apply translations
+      const elementsToTranslate = document.querySelectorAll('[data-translate]');
+      elementsToTranslate.forEach(element => {
+        const key = element.getAttribute('data-translate');
+        if (translations[langCode] && translations[langCode][key]) {
+          // Use innerHTML for content that might contain strong tags (like Location)
+          element.innerHTML = translations[langCode][key];
+        }
+      });
+
+      // Update the page's lang attribute
+      document.documentElement.lang = langCode;
+    }
+
+    // Set initial language on load (e.g., English)
+    document.addEventListener('DOMContentLoaded', () => {
+      changeLanguage('en', 'English');
+    });
+  </script>
+</body>
+</html>

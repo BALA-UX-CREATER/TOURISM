@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mahuadanr Wolf Sanctuary</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            color: white;
+            background: url('templebg.jpg') no-repeat center center fixed;
+            background-size: cover;
+        }
+
+        /* Navbar */
+        header {
+            background: rgba(0, 0, 0, 0.5);
+            padding: 1rem 0; /* Adjusted padding */
+            position: sticky;
+            top: 0;
+            z-index: 1000; /* Added z-index */
+        }
+
+        nav ul {
+            display: flex;
+            justify-content: center;
+            align-items: center; /* Added to vertically align items */
+            list-style: none;
+            gap: 20px; /* Added gap for spacing */
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        nav ul li {
+            margin: 0 10px; /* Adjusted margin */
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: #90ee90;
+        }
+
+        /* Custom Language Selector Styles */
+        .custom-language-selector {
+            position: relative;
+            display: inline-block;
+            margin-left: 20px; /* Adjust as needed for spacing */
+        }
+
+        .current-language {
+            background: #40a840;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 6px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 14px;
+        }
+
+        .current-language::after {
+            content: '▼'; /* Dropdown arrow */
+            font-size: 10px;
+            margin-left: 5px;
+        }
+
+        .language-dropdown {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+            border-radius: 6px;
+            overflow: hidden;
+            margin-top: 5px;
+        }
+
+        .language-dropdown a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            font-size: 14px;
+        }
+
+        .language-dropdown a:hover {
+            background-color: #f1f1f1;
+            color: #40a840;
+        }
+
+        .custom-language-selector.active .language-dropdown {
+            display: block;
+        }
+
+        /* Destination Layout */
+        .destination-layout {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 20px;
+            display: grid;
+            grid-template-columns: 2fr 1fr; /* left big, right small */
+            gap: 30px;
+        }
+
+        /* Left section */
+        .left-section h2 {
+            font-size: 28px;
+            margin-bottom: 10px;
+            color: #40a840;
+        }
+
+        .left-section p {
+            font-size: 16px;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .info-box {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        .info-box h3 {
+            margin-bottom: 12px;
+            color: #333;
+        }
+
+        .info-box ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .info-box ul li {
+            padding: 6px 0;
+            border-bottom: 1px solid #ddd; /* Corrected border color */
+            font-size: 15px;
+            color: #333;
+        }
+
+        .info-box ul li strong {
+            color: #444;
+            margin-right: 6px;
+        }
+
+        /* Right section */
+        .right-section img {
+            width: 100%;
+            height: 250px;
+            border-radius: 12px;
+            object-fit: cover;
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+        }
+
+        .right-section iframe {
+            width: 100%;
+            height: 250px;
+            border-radius: 12px;
+            border: 1px solid #ddd;
+        }
+    </style>
+</head>
+<body>
+<header>
+    <nav>
+        <ul>
+            <li><a href="#" data-translate="nav_home">Home</a></li>
+            <li><a href="#" data-translate="nav_destination">Destination</a></li>
+            <li><a href="#" data-translate="nav_bookings">Bookings</a></li>
+            <li><a href="#" data-translate="nav_contact_us">Contact Us</a></li>
+            <li class="language-option">
+                <div class="custom-language-selector" id="customLangSelector">
+                    <button class="current-language" onclick="toggleLanguageDropdown()">
+                        <span id="selectedLangText">English</span>
+                    </button>
+                    <div class="language-dropdown">
+                        <a href="#" data-lang="en" onclick="changeLanguage('en', 'English')">English</a>
+                        <a href="#" data-lang="hi" onclick="changeLanguage('hi', 'Hindi')">Hindi</a>
+                        <a href="#" data-lang="or" onclick="changeLanguage('or', 'Odia')">Odia</a>
+                        <a href="#" data-lang="mr" onclick="changeLanguage('mr', 'Marathi')">Marathi</a>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </nav>
+</header>
+
+<section class="destination-layout">
+    <!-- Left section -->
+    <div class="left-section">
+        <h2 data-translate="sanctuary_title">Mahuadanr Wolf Sanctuary</h2>
+        <p data-translate="sanctuary_description">
+            Mahuadanr Wolf Sanctuary in Jharkhand is India’s only sanctuary dedicated to wolves, making it a truly unique destination for wildlife lovers. Spread across the lush forests and rolling hills of Latehar district, it offers a natural habitat for a significant population of Indian wolves. Visitors can witness the wolves roaming freely along with other wildlife like jackals, hyenas, and deer. The sanctuary is also rich in biodiversity, with dense forests and scenic landscapes adding to its charm. It is a perfect blend of adventure, nature, and rare wildlife conservation.
+        </p>
+
+        <div class="info-box">
+            <h3 data-translate="travel_info_title">Travel Information</h3>
+            <ul>
+                <li data-translate="location_info"><strong>Location:</strong> Latehar Bus Stand → Mahuadanr Wolf Sanctuary</li>
+                <li data-translate="hotels_info"><strong>Hotels:</strong> Naturehat Resort, Parwati Rest House, Muskan Hotel</li>
+                <li data-translate="transport_info"><strong>Transport:</strong> Bus, Taxi, Auto available</li>
+                <li data-translate="season_info"><strong>Season:</strong> November – March</li>
+                <li data-translate="guides_info"><strong>Guides:</strong> Local guides available</li>
+                <li data-translate="emergency_info"><strong>Emergency:</strong> 🚓 100 – Police, 🚑 108 – Ambulance, 🔥 101 – Fire Service</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Right section -->
+    <div class="right-section">
+        <img src="./image/Mahuadanr wolf sanctuary.jpg" alt="Destination Photo">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3659.1584206717557!2d84.03008907455482!3d23.490802698694292!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x398bb6d09ab4b2a1%3A0x2fb2a138d1df8154!2sMahuadanr%20Wolf%20Sanctuary!5e0!3m2!1sen!2sin!4v1757194713893!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+</section>
+
+<script>
+    // Simple toggle for the dropdown
+    function toggleLanguageDropdown() {
+        document.getElementById("customLangSelector").classList.toggle("active");
+    }
+
+    // Close the dropdown if the user clicks outside of it
+    window.onclick = function(event) {
+        if (!event.target.matches('.current-language') && !event.target.matches('#selectedLangText')) {
+            var dropdowns = document.getElementsByClassName("custom-language-selector");
+            for (var i = 0; i < dropdowns.length; i++) {
+                var openDropdown = dropdowns[i];
+                if (openDropdown.classList.contains('active')) {
+                    openDropdown.classList.remove('active');
+                }
+            }
+        }
+    }
+
+    const translations = {
+        en: {
+            nav_home: "Home",
+            nav_destination: "Destination",
+            nav_bookings: "Bookings",
+            nav_contact_us: "Contact Us",
+            sanctuary_title: "Mahuadanr Wolf Sanctuary",
+            sanctuary_description: "Mahuadanr Wolf Sanctuary in Jharkhand is India’s only sanctuary dedicated to wolves, making it a truly unique destination for wildlife lovers. Spread across the lush forests and rolling hills of Latehar district, it offers a natural habitat for a significant population of Indian wolves. Visitors can witness the wolves roaming freely along with other wildlife like jackals, hyenas, and deer. The sanctuary is also rich in biodiversity, with dense forests and scenic landscapes adding to its charm. It is a perfect blend of adventure, nature, and rare wildlife conservation.",
+            travel_info_title: "Travel Information",
+            location_info: "<strong>Location:</strong> Latehar Bus Stand → Mahuadanr Wolf Sanctuary",
+            hotels_info: "<strong>Hotels:</strong> Naturehat Resort, Parwati Rest House, Muskan Hotel",
+            transport_info: "<strong>Transport:</strong> Bus, Taxi, Auto available",
+            season_info: "<strong>Season:</strong> November – March",
+            guides_info: "<strong>Guides:</strong> Local guides available",
+            emergency_info: "<strong>Emergency:</strong> 🚓 100 – Police, 🚑 108 – Ambulance, 🔥 101 – Fire Service"
+        },
+        hi: {
+            nav_home: "होम",
+            nav_destination: "गंतव्य",
+            nav_bookings: "बुकिंग",
+            nav_contact_us: "हमसे संपर्क करें",
+            sanctuary_title: "महुआडांड़ भेड़िया अभयारण्य",
+            sanctuary_description: "झारखंड में महुआडांड़ भेड़िया अभयारण्य भारत का एकमात्र अभयारण्य है जो भेड़ियों को समर्पित है, जो इसे वन्यजीव प्रेमियों के लिए वास्तव में एक अनूठा गंतव्य बनाता है। लातेहार जिले के हरे-भरे जंगलों और घुमावदार पहाड़ियों में फैला यह भारतीय भेड़ियों की एक महत्वपूर्ण आबादी के लिए एक प्राकृतिक आवास प्रदान करता है। आगंतुक भेड़ियों को सियार, लकड़बग्घे और हिरण जैसे अन्य वन्यजीवों के साथ स्वतंत्र रूप से घूमते हुए देख सकते हैं। यह अभयारण्य घने जंगलों और सुरम्य परिदृश्यों के साथ जैव विविधता में भी समृद्ध है जो इसके आकर्षण को बढ़ाते हैं। यह रोमांच, प्रकृति और दुर्लभ वन्यजीव संरक्षण का एक आदर्श मिश्रण है।",
+            travel_info_title: "यात्रा जानकारी",
+            location_info: "<strong>स्थान:</strong> लातेहार बस स्टैंड → महुआडांड़ भेड़िया अभयारण्य",
+            hotels_info: "<strong>होटल:</strong> नेचरहैट रिसॉर्ट, पार्वती रेस्ट हाउस, मुस्कान होटल",
+            transport_info: "<strong>परिवहन:</strong> बस, टैक्सी, ऑटो उपलब्ध",
+            season_info: "<strong>मौसम:</strong> नवंबर – मार्च",
+            guides_info: "<strong>गाइड:</strong> स्थानीय गाइड उपलब्ध",
+            emergency_info: "<strong>आपातकालीन:</strong> 🚓 100 – पुलिस, 🚑 108 – एम्बुलेंस, 🔥 101 – फायर सर्विस"
+        },
+        or: {
+            nav_home: "ହୋମ୍",
+            nav_destination: "ଗନ୍ତବ୍ୟସ୍ଥଳ",
+            nav_bookings: "ବୁକିଂ",
+            nav_contact_us: "ଆମ ସହିତ ଯୋଗାଯୋଗ କରନ୍ତୁ",
+            sanctuary_title: "ମହୁଆଡାଣ୍ଡ ଓଲ୍ଫ ଅଭୟାରଣ୍ୟ",
+            sanctuary_description: "ଝାଡଖଣ୍ଡର ମହୁଆଡାଣ୍ଡ ଓଲ୍ଫ ଅଭୟାରଣ୍ୟ ଭାରତର ଏକମାତ୍ର ଅଭୟାରଣ୍ୟ ଯାହା କେବଳ ଗଧିଆମାନଙ୍କ ପାଇଁ ଉତ୍ସର୍ଗୀକୃତ, ଏହାକୁ ବନ୍ୟଜୀବ ପ୍ରେମୀମାନଙ୍କ ପାଇଁ ଏକ ଅନନ୍ୟ ଗନ୍ତବ୍ୟସ୍ଥଳୀ କରିଥାଏ। ଲାତେହାର ଜିଲ୍ଲାର ସବୁଜ ଜଙ୍ଗଲ ଏବଂ ଢାଲୁଆ ପାହାଡରେ ବ୍ୟାପିଥିବା ଏହା ଭାରତୀୟ ଗଧିଆମାନଙ୍କର ଏକ ଗୁରୁତ୍ୱପୂର୍ଣ୍ଣ ଜନସଂଖ୍ୟା ପାଇଁ ଏକ ପ୍ରାକୃତିକ ବାସସ୍ଥାନ ପ୍ରଦାନ କରେ। ପରିଦର୍ଶକମାନେ ଗଧିଆମାନଙ୍କୁ ଶିଆଳ, ହାଇନା ଏବଂ ହରିଣ ଭଳି ଅନ୍ୟ ବନ୍ୟଜୀବମାନଙ୍କ ସହିତ ମୁକ୍ତ ଭାବରେ ବୁଲୁଥିବା ଦେଖିପାରିବେ। ଏହି ଅଭୟାରଣ୍ୟ ଘଞ୍ଚ ଜଙ୍ଗଲ ଏବଂ ମନୋରମ ଭୂଭାଗ ସହିତ ଜୈବ ବିବିଧତାରେ ମଧ୍ୟ ଭରପୂର, ଯାହା ଏହାର ଆକର୍ଷଣକୁ ବଢାଇଥାଏ। ଏହା ଦୁଃସାହସିକତା, ପ୍ରକୃତି ଏବଂ ବିରଳ ବନ୍ୟଜୀବ ସଂରକ୍ଷଣର ଏକ ସିଦ୍ଧ ମିଶ୍ରଣ।",
+            travel_info_title: "ଯାତ୍ରା ସୂଚନା",
+            location_info: "<strong>ସ୍ଥାନ:</strong> ଲାତେହାର ବସ୍ ଷ୍ଟାଣ୍ଡ → ମହୁଆଡାଣ୍ଡ ଓଲ୍ଫ ଅଭୟାରଣ୍ୟ",
+            hotels_info: "<strong>ହୋଟେଲ୍:</strong> ନେଚର୍‌ହାଟ୍ ରିସର୍ଟ, ପାର୍ବତୀ ରେଷ୍ଟ ହାଉସ୍, ମୁସକାନ ହୋଟେଲ୍",
+            transport_info: "<strong>ପରିବହନ:</strong> ବସ୍, ଟାକ୍ସି, ଅଟୋ ଉପଲବ୍ଧ",
+            season_info: "<strong>ଋତୁ:</strong> ନଭେମ୍ବର – ମାର୍ଚ୍ଚ",
+            guides_info: "<strong>ଗାଇଡ୍:</strong> ସ୍ଥାନୀୟ ଗାଇଡ୍ ଉପଲବ୍ଧ",
+            emergency_info: "<strong>ଜରୁରୀକାଳୀନ:</strong> 🚓 100 – ପୋଲିସ, 🚑 108 – ଆମ୍ବୁଲାନ୍ସ, 🔥 101 – ଅଗ୍ନିଶମ ସେବା"
+        },
+        mr: {
+            nav_home: "मुख्यपृष्ठ",
+            nav_destination: "गंतव्यस्थान",
+            nav_bookings: "बुकिंग",
+            nav_contact_us: "आमच्याशी संपर्क साधा",
+            sanctuary_title: "महुआडांड़ लांडगा अभयारण्य",
+            sanctuary_description: "झारखंडमधील महुआडांड़ लांडगा अभयारण्य हे लांडग्यांसाठी समर्पित असलेले भारतातील एकमेव अभयारण्य आहे, ज्यामुळे ते वन्यजीव प्रेमींसाठी खरोखरच एक अद्वितीय ठिकाण आहे. लातेहार जिल्ह्याच्या हिरवीगार जंगले आणि डोंगरदऱ्यांमध्ये पसरलेले हे भारतीय लांडग्यांच्या महत्त्वपूर्ण लोकसंख्येसाठी नैसर्गिक अधिवास प्रदान करते. पर्यटक कोल्हे, तरस आणि हरणांसारख्या इतर वन्यजीवांसह लांडग्यांना मुक्तपणे फिरताना पाहू शकतात. हे अभयारण्य जैवविविधतेने देखील समृद्ध आहे, ज्यात घनदाट जंगल आणि निसर्गरम्य लँडस्केप्स त्याच्या आकर्षणात भर घालतात. हे साहस, निसर्ग आणि दुर्मिळ वन्यजीव संवर्धनाचे एक परिपूर्ण मिश्रण आहे.",
+            travel_info_title: "प्रवास माहिती",
+            location_info: "<strong>स्थान:</strong> लातेहार बस स्टँड → महुआडांड़ लांडगा अभयारण्य",
+            hotels_info: "<strong>हॉटेल:</strong> नेचरहॅट रिसॉर्ट, पार्वती रेस्ट हाऊस, मुस्कान हॉटेल",
+            transport_info: "<strong>वाहतूक:</strong> बस, टॅक्सी, ऑटो उपलब्ध",
+            season_info: "<strong>हंगाम:</strong> नोव्हेंबर – मार्च",
+            guides_info: "<strong>गाईड्स:</strong> स्थानिक गाईड्स उपलब्ध",
+            emergency_info: "<strong>आपत्कालीन:</strong> 🚓 100 – पोलिस, 🚑 108 – रुग्णवाहिका, 🔥 101 – अग्निशमन सेवा"
+        }
+    };
+
+    function changeLanguage(langCode, langName) {
+        document.getElementById("selectedLangText").innerText = langName;
+        document.getElementById("customLangSelector").classList.remove("active"); // Close dropdown
+
+        const elementsToTranslate = document.querySelectorAll('[data-translate]');
+        elementsToTranslate.forEach(element => {
+            const key = element.getAttribute('data-translate');
+            if (translations[langCode] && translations[langCode][key]) {
+                element.innerHTML = translations[langCode][key];
+            }
+        });
+
+        document.documentElement.lang = langCode;
+    }
+
+    // Set initial language on load (e.g., English)
+    document.addEventListener('DOMContentLoaded', () => {
+        changeLanguage('en', 'English');
+    });
+</script>
+</body>
+</html>

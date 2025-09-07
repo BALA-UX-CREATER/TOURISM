@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jharkhand Tourism - Netarhat</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Roboto', sans-serif;
+      color: white;
+      background: url('templebg.jpg') no-repeat center center fixed;
+      background-size: cover;
+    }
+
+    /* Navbar */
+    header {
+      background: rgba(0, 0, 0, 0.5);
+      padding: 1rem 0;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    nav ul {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      list-style: none;
+      gap: 20px;
+    }
+
+    nav ul li a {
+      color: white;
+      text-decoration: none;
+      transition: color 0.3s;
+      font-weight: 500;
+    }
+
+    nav ul li a:hover {
+      color: #90ee90;
+    }
+
+    /* Language Selector */
+    .custom-language-selector {
+      position: relative;
+      display: inline-block;
+    }
+
+    .current-language {
+      background: #40a840;
+      color: white;
+      border: none;
+      padding: 8px 15px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 14px;
+    }
+
+    .current-language::after {
+      content: '▼';
+      font-size: 10px;
+      margin-left: 5px;
+    }
+
+    .language-dropdown {
+      display: none;
+      position: absolute;
+      background: #f9f9f9;
+      min-width: 160px;
+      box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
+      border-radius: 6px;
+      margin-top: 5px;
+      z-index: 1001;
+    }
+
+    .language-dropdown a {
+      color: black;
+      padding: 10px 14px;
+      text-decoration: none;
+      display: block;
+      font-size: 14px;
+    }
+
+    .language-dropdown a:hover {
+      background-color: #f1f1f1;
+      color: #40a840;
+    }
+
+    .custom-language-selector.active .language-dropdown {
+      display: block;
+    }
+
+    /* Destination Layout */
+    .destination-layout {
+      max-width: 1200px;
+      margin: 40px auto;
+      padding: 20px;
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 30px;
+    }
+
+    .left-section h2 {
+      font-size: 28px;
+      margin-bottom: 10px;
+      color: #40a840;
+    }
+
+    .left-section p {
+      font-size: 16px;
+      line-height: 1.6;
+      margin-bottom: 20px;
+      background: rgba(0,0,0,0.5);
+      padding: 10px;
+      border-radius: 8px;
+    }
+
+    .info-box {
+      background: rgba(255, 255, 255, 0.95);
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    .info-box h3 {
+      margin-bottom: 12px;
+      color: #333;
+    }
+
+    .info-box ul {
+      list-style: none;
+    }
+
+    .info-box ul li {
+      padding: 6px 0;
+      border-bottom: 1px solid #ddd;
+      font-size: 15px;
+      color: #333;
+    }
+
+    .right-section img {
+      width: 100%;
+      height: 250px;
+      border-radius: 12px;
+      object-fit: cover;
+      margin-bottom: 20px;
+    }
+
+    .right-section iframe {
+      width: 100%;
+      height: 250px;
+      border-radius: 12px;
+      border: 1px solid #ddd;
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <header>
+    <nav>
+      <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Destinations</a></li>
+        <li><a href="#">Bookings</a></li>
+        <li><a href="#">Contact Us</a></li>
+        <li>
+          <div class="custom-language-selector" id="customLangSelector">
+            <button class="current-language" onclick="toggleLanguageDropdown()">
+              <span id="selectedLangText">English</span>
+            </button>
+            <div class="language-dropdown">
+              <a href="#" onclick="changeLanguage('en','English')">English</a>
+              <a href="#" onclick="changeLanguage('hi','Hindi')">Hindi</a>
+              <a href="#" onclick="changeLanguage('or','Odia')">Odia</a>
+              <a href="#" onclick="changeLanguage('mr','Marathi')">Marathi</a>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Destination Content -->
+  <section class="destination-layout">
+    <!-- Left -->
+    <div class="left-section">
+      <h2 data-translate="netarhat_title">Netarhat (Queen of Chotanagpur)</h2>
+      <p data-translate="netarhat_description">
+        Netarhat, known as the Queen of Chotanagpur, is a serene hill station 
+        renowned for its breathtaking sunrise and sunset views at Magnolia Point 
+        and Sunrise Point. The region offers trekking to the beautiful Ghaghri Falls, 
+        nature walks, and photography in dense pine forests.
+      </p>
+
+      <div class="info-box">
+        <h3 data-translate="travel_info_title">Travel Information</h3>
+        <ul>
+          <li data-translate="location_info"><strong>Location:</strong> Latehar district, Jharkhand</li>
+          <li data-translate="hotels_info"><strong>Hotels:</strong> Forest lodges, guest houses, and hotels nearby</li>
+          <li data-translate="transport_info"><strong>Transport:</strong> Nearest railway station: Ranchi (156 km)</li>
+          <li data-translate="season_info"><strong>Best Season:</strong> October – March (ideal for cool weather & treks)</li>
+          <li data-translate="guides_info"><strong>Activities:</strong> Trekking, nature walks, photography, forest exploration</li>
+          <li data-translate="emergency_info"><strong>Emergency:</strong> +91-9431200000 (local helpline)</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Right -->
+    <div class="right-section">
+      <img src="./image/adventure4.jpg" alt="Netarhat">
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3686.920126353868!2d84.2646!3d23.4743!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39f32b7e18d73f27%3A0xa0c2dcb0e3f8b6b9!2sNetarhat!5e0!3m2!1sen!2sin!4v1694200789012!5m2!1sen!2sin" allowfullscreen="" loading="lazy"></iframe>
+    </div>
+  </section>
+
+  <script>
+    function toggleLanguageDropdown() {
+      document.getElementById("customLangSelector").classList.toggle("active");
+    }
+
+    window.onclick = function(event) {
+      if (!event.target.matches('.current-language') && !event.target.matches('#selectedLangText')) {
+        let dropdowns = document.getElementsByClassName("custom-language-selector");
+        for (let i = 0; i < dropdowns.length; i++) {
+          let openDropdown = dropdowns[i];
+          if (openDropdown.classList.contains('active')) {
+            openDropdown.classList.remove('active');
+          }
+        }
+      }
+    }
+
+    const translations = {
+      en: {
+        netarhat_title: "Netarhat (Queen of Chotanagpur)",
+        netarhat_description: "Netarhat, known as the Queen of Chotanagpur, is a serene hill station renowned for its breathtaking sunrise and sunset views at Magnolia Point and Sunrise Point...",
+        travel_info_title: "Travel Information",
+        location_info: "<strong>Location:</strong> Latehar district, Jharkhand",
+        hotels_info: "<strong>Hotels:</strong> Forest lodges, guest houses, and hotels nearby",
+        transport_info: "<strong>Transport:</strong> Nearest railway station: Ranchi (156 km)",
+        season_info: "<strong>Best Season:</strong> October – March (ideal for cool weather & treks)",
+        guides_info: "<strong>Activities:</strong> Trekking, nature walks, photography, forest exploration",
+        emergency_info: "<strong>Emergency:</strong> +91-9431200000 (local helpline)"
+      },
+      hi: {
+        netarhat_title: "नेतरहाट (छोटानागपुर की रानी)",
+        netarhat_description: "नेतरहाट, जिसे छोटानागपुर की रानी कहा जाता है, एक शांत हिल स्टेशन है जो अपने अद्भुत सूर्योदय और सूर्यास्त दृश्यों के लिए प्रसिद्ध है...",
+        travel_info_title: "यात्रा जानकारी",
+        location_info: "<strong>स्थान:</strong> लातेहार जिला, झारखंड",
+        hotels_info: "<strong>होटल:</strong> वन लॉज और गेस्ट हाउस",
+        transport_info: "<strong>परिवहन:</strong> निकटतम रेलवे स्टेशन: रांची (156 किमी)",
+        season_info: "<strong>सर्वश्रेष्ठ मौसम:</strong> अक्टूबर – मार्च",
+        guides_info: "<strong>गतिविधियाँ:</strong> ट्रेकिंग, नेचर वॉक, फोटोग्राफी, जंगल भ्रमण",
+        emergency_info: "<strong>आपातकालीन:</strong> +91-9431200000"
+      }
+      // Odia & Marathi can be added
+    };
+
+    function changeLanguage(langCode, langName) {
+      document.getElementById("selectedLangText").innerText = langName;
+      document.getElementById("customLangSelector").classList.remove("active");
+      const elements = document.querySelectorAll('[data-translate]');
+      elements.forEach(el => {
+        const key = el.getAttribute('data-translate');
+        if (translations[langCode] && translations[langCode][key]) {
+          el.innerHTML = translations[langCode][key];
+        }
+      });
+      document.documentElement.lang = langCode;
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      changeLanguage('en', 'English');
+    });
+  </script>
+</body>
+</html>

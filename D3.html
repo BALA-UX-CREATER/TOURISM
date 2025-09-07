@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jharkhand Tourism Wildlife</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            color: white;
+            background: url('templebg.jpg') no-repeat center center fixed;
+            background-size: cover;
+        }
+
+        /* Navbar */
+        header {
+            background: rgba(0, 0, 0, 0.5);
+            padding: 1rem 0; /* Adjusted padding for better fit with dropdown */
+            position: sticky;
+            top: 0;
+            z-index: 1000; /* Ensure navbar is above other content */
+        }
+
+        nav ul {
+            display: flex;
+            justify-content: center;
+            align-items: center; /* Align items vertically */
+            list-style: none;
+            gap: 20px; /* Spacing between nav items */
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        nav ul li {
+            margin: 0 10px; /* Adjusted margin */
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: #90ee90;
+        }
+
+        /* Custom Language Selector Styles */
+        .custom-language-selector {
+            position: relative;
+            display: inline-block;
+            margin-left: 20px;
+        }
+
+        .current-language {
+            background: #40a840;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 6px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 14px;
+        }
+
+        .current-language::after {
+            content: '▼';
+            font-size: 10px;
+            margin-left: 5px;
+        }
+
+        .language-dropdown {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+            border-radius: 6px;
+            overflow: hidden;
+            margin-top: 5px;
+        }
+
+        .language-dropdown a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            font-size: 14px;
+        }
+
+        .language-dropdown a:hover {
+            background-color: #f1f1f1;
+            color: #40a840;
+        }
+
+        .custom-language-selector.active .language-dropdown {
+            display: block;
+        }
+
+        /* Main content layout */
+        .destination-layout {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 20px;
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 30px;
+        }
+
+        /* Left section */
+        .left-section h2 {
+            font-size: 28px;
+            margin-bottom: 10px;
+            color: #40a840;
+        }
+
+        .left-section p {
+            font-size: 16px;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .info-box {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        .info-box h3 {
+            margin-bottom: 12px;
+            color: #333;
+        }
+
+        .info-box ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .info-box ul li {
+            padding: 6px 0;
+            border-bottom: 1px solid #ddd; /* Corrected border color */
+            font-size: 15px;
+            color: #333;
+        }
+
+        .info-box ul li strong {
+            color: #444;
+            margin-right: 6px;
+        }
+
+        /* Right section */
+        .right-section img {
+            width: 100%;
+            height: 250px;
+            border-radius: 12px;
+            object-fit: cover;
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+        }
+
+        .right-section iframe {
+            width: 100%;
+            height: 250px;
+            border-radius: 12px;
+            border: 1px solid #ddd;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="index.html" data-translate="nav_home">Home</a></li>
+                <li><a href="destination.html" data-translate="nav_destination">Destination</a></li>
+                <li><a href="#" data-translate="nav_bookings">Bookings</a></li>
+                <li><a href="#" data-translate="nav_contact_us">Contact Us</a></li>
+                <li class="language-option">
+                    <div class="custom-language-selector" id="customLangSelector">
+                        <button class="current-language" onclick="toggleLanguageDropdown()">
+                            <span id="selectedLangText">English</span>
+                        </button>
+                        <div class="language-dropdown">
+                            <a href="#" data-lang="en" onclick="changeLanguage('en', 'English')">English</a>
+                            <a href="#" data-lang="hi" onclick="changeLanguage('hi', 'Hindi')">Hindi</a>
+                            <a href="#" data-lang="or" onclick="changeLanguage('or', 'Odia')">Odia</a>
+                            <a href="#" data-lang="mr" onclick="changeLanguage('mr', 'Marathi')">Marathi</a>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <div>
+        <section class="destination-layout">
+            <!-- Left section -->
+            <div class="left-section">
+                <h2 data-translate="rajrappa_title">Rajrappa Temple (Ramgarh)</h2>
+                <p data-translate="rajrappa_description">
+                    Rajrappa Temple (Ramgarh) is a famous Shakti Peeth in Jharkhand, dedicated to Goddess Chhinnamasta, a unique and rare form of Maa Shakti. The temple is situated at the confluence of the Bhairavi and Damodar rivers, surrounded by scenic hills and forests. Devotees believe that worship here fulfills wishes and brings prosperity. The temple also attracts visitors for its natural beauty, boating, and the spiritual energy of the place.
+                </p>
+
+                <div class="info-box">
+                    <h3 data-translate="travel_info_title">Travel Information</h3>
+                    <ul>
+                        <li data-translate="location_info"><strong>Location:</strong> Ramgarh Railway Station → Rajrappa Temple</li>
+                        <li data-translate="hotels_info"><strong>Hotels:</strong> Hotel Rajrappa And Banquet Hall, Hotel Pnr Residency</li>
+                        <li data-translate="transport_info"><strong>Transport:</strong> Bus, Taxi, Auto available</li>
+                        <li data-translate="season_info"><strong>Season:</strong> March–April & September–October</li>
+                        <li data-translate="guides_info"><strong>Guides:</strong> Local guides available</li>
+                        <li data-translate="emergency_info"><strong>Emergency:</strong> 🚓 100 – Police, 🚑 108 – Ambulance, 🔥 101 – Fire Service</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Right section -->
+            <div class="right-section">
+                <img src="./image/D3.jpg" alt="Destination Photo">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3655.254050926206!2d85.51549757455926!3d23.631071193348525!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39f4f3954284893f%3A0xf71b08b8bc42c030!2sRajrappa%20mandir%20Ramgarh%20cantt!5e0!3m2!1sen!2sin!4v1757211734529!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        function toggleLanguageDropdown() {
+            document.getElementById("customLangSelector").classList.toggle("active");
+        }
+
+        window.onclick = function(event) {
+            if (!event.target.matches('.current-language') && !event.target.matches('#selectedLangText')) {
+                var dropdowns = document.getElementsByClassName("custom-language-selector");
+                for (var i = 0; i < dropdowns.length; i++) {
+                    var openDropdown = dropdowns[i];
+                    if (openDropdown.classList.contains('active')) {
+                        openDropdown.classList.remove('active');
+                    }
+                }
+            }
+        }
+
+        const translations = {
+            en: {
+                nav_home: "Home",
+                nav_destination: "Destination",
+                nav_bookings: "Bookings",
+                nav_contact_us: "Contact Us",
+                rajrappa_title: "Rajrappa Temple (Ramgarh)",
+                rajrappa_description: "Rajrappa Temple (Ramgarh) is a famous Shakti Peeth in Jharkhand, dedicated to Goddess Chhinnamasta, a unique and rare form of Maa Shakti. The temple is situated at the confluence of the Bhairavi and Damodar rivers, surrounded by scenic hills and forests. Devotees believe that worship here fulfills wishes and brings prosperity. The temple also attracts visitors for its natural beauty, boating, and the spiritual energy of the place.",
+                travel_info_title: "Travel Information",
+                location_info: "<strong>Location:</strong> Ramgarh Railway Station → Rajrappa Temple",
+                hotels_info: "<strong>Hotels:</strong> Hotel Rajrappa And Banquet Hall, Hotel Pnr Residency",
+                transport_info: "<strong>Transport:</strong> Bus, Taxi, Auto available",
+                season_info: "<strong>Season:</strong> March–April & September–October",
+                guides_info: "<strong>Guides:</strong> Local guides available",
+                emergency_info: "<strong>Emergency:</strong> 🚓 100 – Police, 🚑 108 – Ambulance, 🔥 101 – Fire Service"
+            },
+            hi: {
+                nav_home: "होम",
+                nav_destination: "गंतव्य",
+                nav_bookings: "बुकिंग",
+                nav_contact_us: "हमसे संपर्क करें",
+                rajrappa_title: "रजरप्पा मंदिर (रामगढ़)",
+                rajrappa_description: "रजरप्पा मंदिर (रामगढ़) झारखंड में एक प्रसिद्ध शक्ति पीठ है, जो देवी छिन्नमस्ता को समर्पित है, जो माँ शक्ति का एक अद्वितीय और दुर्लभ रूप है। यह मंदिर भैरवी और दामोदर नदियों के संगम पर स्थित है, जो सुरम्य पहाड़ियों और जंगलों से घिरा हुआ है। भक्तों का मानना है कि यहां पूजा करने से इच्छाएं पूरी होती हैं और समृद्धि आती है। यह मंदिर अपनी प्राकृतिक सुंदरता, नौका विहार और स्थान की आध्यात्मिक ऊर्जा के लिए भी आगंतुकों को आकर्षित करता है।",
+                travel_info_title: "यात्रा जानकारी",
+                location_info: "<strong>स्थान:</strong> रामगढ़ रेलवे स्टेशन → रजरप्पा मंदिर",
+                hotels_info: "<strong>होटल:</strong> होटल रजरप्पा एंड बैंक्वेट हॉल, होटल पीएनआर रेजिडेंसी",
+                transport_info: "<strong>परिवहन:</strong> बस, टैक्सी, ऑटो उपलब्ध",
+                season_info: "<strong>मौसम:</strong> मार्च-अप्रैल और सितंबर-अक्टूबर",
+                guides_info: "<strong>गाइड:</strong> स्थानीय गाइड उपलब्ध",
+                emergency_info: "<strong>आपातकालीन:</strong> 🚓 100 – पुलिस, 🚑 108 – एम्बुलेंस, 🔥 101 – अग्नि सेवा"
+            },
+            or: {
+                nav_home: "ମୁଖ୍ୟପୃଷ୍ଠା",
+                nav_destination: "ଗନ୍ତବ୍ୟସ୍ଥଳ",
+                nav_bookings: "ବୁକିଂ",
+                nav_contact_us: "ଆମ ସହିତ ଯୋଗାଯୋଗ କରନ୍ତୁ",
+                rajrappa_title: "ରାଜରପ୍ପା ମନ୍ଦିର (ରାମଗଡ଼)",
+                rajrappa_description: "ରାଜରପ୍ପା ମନ୍ଦିର (ରାମଗଡ଼) ଝାଡ଼ଖଣ୍ଡର ଏକ ପ୍ରସିଦ୍ଧ ଶକ୍ତି ପୀଠ, ଯାହା ମାଆ ଛିନ୍ନମସ୍ତାଙ୍କୁ ଉତ୍ସର୍ଗୀକୃତ, ଯିଏ ମାଆ ଶକ୍ତିଙ୍କର ଏକ ଅନନ୍ୟ ଏବଂ ବିରଳ ରୂପ। ଏହି ମନ୍ଦିର ଭୈରବୀ ଏବଂ ଦାମୋଦର ନଦୀର ସଙ୍ଗମରେ ଅବସ୍ଥିତ, ଯାହା ସୁନ୍ଦର ପାହାଡ଼ ଏବଂ ଜଙ୍ଗଲରେ ଘେରି ରହିଛି। ଭକ୍ତମାନେ ବିଶ୍ୱାସ କରନ୍ତି ଯେ ଏଠାରେ ପୂଜା କରିବା ଦ୍ୱାରା ଇଚ୍ଛା ପୂରଣ ହୁଏ ଏବଂ ସମୃଦ୍ଧି ଆସେ। ଏହି ମନ୍ଦିର ଏହାର ପ୍ରାକୃତିକ ସୌନ୍ଦର୍ଯ୍ୟ, ନୌକା ବିହାର ଏବଂ ସ୍ଥାନର ଆଧ୍ୟାତ୍ମିକ ଶକ୍ତି ପାଇଁ ମଧ୍ୟ ପରିଦର୍ଶକଙ୍କୁ ଆକର୍ଷିତ କରେ।",
+                travel_info_title: "ଯାତ୍ରା ସୂଚନା",
+                location_info: "<strong>ସ୍ଥାନ:</strong> ରାମଗଡ଼ ରେଳ ଷ୍ଟେସନ → ରାଜରପ୍ପା ମନ୍ଦିର",
+                hotels_info: "<strong>ହୋଟେଲ୍:</strong> ହୋଟେଲ୍ ରାଜରପ୍ପା ଆଣ୍ଡ ବ୍ୟାଙ୍କୁଏଟ୍ ହଲ୍, ହୋଟେଲ୍ ପିଏନଆର ରେସିଡେନ୍ସି",
+                transport_info: "<strong>ପରିବହନ:</strong> ବସ୍, ଟାକ୍ସି, ଅଟୋ ଉପଲବ୍ଧ",
+                season_info: "<strong>ଋତୁ:</strong> ମାର୍ଚ୍ଚ–ଏପ୍ରିଲ୍ ଏବଂ ସେପ୍ଟେମ୍ବର–ଅକ୍ଟୋବର",
+                guides_info: "<strong>ଗାଇଡ୍:</strong> ସ୍ଥାନୀୟ ଗାଇଡ୍ ଉପଲବ୍ଧ",
+                emergency_info: "<strong>ଜରୁରୀକାଳୀନ:</strong> 🚓 100 – ପୋଲିସ, 🚑 108 – ଆମ୍ବୁଲାନ୍ସ, 🔥 101 – ଅଗ୍ନିସେବା"
+            },
+            mr: {
+                nav_home: "मुख्यपृष्ठ",
+                nav_destination: "स्थळ",
+                nav_bookings: "बुकिंग",
+                nav_contact_us: "आमच्याशी संपर्क साधा",
+                rajrappa_title: "रजरप्पा मंदिर (रामगड)",
+                rajrappa_description: "रजरप्पा मंदिर (रामगड) झारखंडमधील एक प्रसिद्ध शक्तीपीठ आहे, जे देवी छिन्नमस्ता यांना समर्पित आहे, जे माँ शक्तीचे एक अद्वितीय आणि दुर्मिळ रूप आहे. हे मंदिर भैरवी आणि दामोदर नद्यांच्या संगमावर वसलेले आहे, जे नयनरम्य डोंगर आणि जंगलांनी वेढलेले आहे. भक्तांचा असा विश्वास आहे की येथे पूजा केल्याने इच्छा पूर्ण होतात आणि समृद्धी येते. हे मंदिर त्याच्या नैसर्गिक सौंदर्य, नौकाविहार आणि ठिकाणाच्या आध्यात्मिक ऊर्जेमुळे पर्यटकांना आकर्षित करते.",
+                travel_info_title: "प्रवास माहिती",
+                location_info: "<strong>स्थान:</strong> रामगड रेल्वे स्टेशन → रजरप्पा मंदिर",
+                hotels_info: "<strong>हॉटेल:</strong> हॉटेल रजरप्पा अँड बँक्वेट हॉल, हॉटेल पीएनआर रेसिडेन्सी",
+                transport_info: "<strong>वाहतूक:</strong> बस, टॅक्सी, ऑटो उपलब्ध",
+                season_info: "<strong>हंगाम:</strong> मार्च–एप्रिल आणि सप्टेंबर–ऑक्टोबर",
+                guides_info: "<strong>गाईड्स:</strong> स्थानिक गाईड्स उपलब्ध",
+                emergency_info: "<strong>आपत्कालीन:</strong> 🚓 100 – पोलीस, 🚑 108 – ॲम्ब्युलन्स, 🔥 101 – अग्निशमन सेवा"
+            }
+        };
+
+        function changeLanguage(langCode, langName) {
+            document.getElementById("selectedLangText").innerText = langName;
+            document.getElementById("customLangSelector").classList.remove("active");
+
+            const elementsToTranslate = document.querySelectorAll('[data-translate]');
+            elementsToTranslate.forEach(element => {
+                const key = element.getAttribute('data-translate');
+                if (translations[langCode] && translations[langCode][key]) {
+                    element.innerHTML = translations[langCode][key];
+                }
+            });
+
+            document.documentElement.lang = langCode;
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            changeLanguage('en', 'English'); // Set initial language on load
+        });
+    </script>
+</body>
+</html>

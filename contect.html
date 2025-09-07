@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Us - Jharkhand Tourism</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+   /* General Styles */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Roboto', sans-serif;
+      color: white;
+      background: url('2345.jpg') no-repeat center center fixed;
+      background-size: cover;   
+    }
+
+    header {
+      background: rgba(0, 0, 0, 0.5);
+      padding: 2rem 0;
+      position: sticky;
+      top: 0;
+    }
+
+    nav ul {
+      display: flex;
+      justify-content: center;
+      list-style: none;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    nav ul li {
+      margin: 0 20px;
+    }
+
+    nav ul li a {
+      color: white;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    nav ul li a:hover {
+      color: #90ee90;
+    }
+
+    .contact-container {
+      max-width: 1000px;
+      margin: 40px auto;
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 30px;
+      padding: 20px;
+    }
+
+    /* Contact Form */
+    .contact-form {
+      background: rgba(255, 255, 255, 0.95);
+      padding: 25px;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      color: #333;
+    }
+
+    .contact-form h2 {
+      margin-bottom: 15px;
+      color: #40a840;
+    }
+
+    .contact-form label {
+      display: block;
+      margin: 10px 0 5px;
+      font-weight: bold;
+    }
+
+    .contact-form input, 
+    .contact-form textarea {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 15px;
+    }
+
+    .contact-form button {
+      background: #40a840;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 16px;
+      transition: 0.3s;
+    }
+
+    .contact-form button:hover {
+      background: #2d7c2d;
+    }
+
+    /* Emergency Info */
+    .emergency-box {
+      background: rgba(255, 255, 255, 0.95);
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      color: #333;
+    }
+
+    .emergency-box h2 {
+      margin-bottom: 15px;
+      color: #d9534f;
+    }
+
+    .emergency-box ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .emergency-box ul li {
+      padding: 8px 0;
+      font-size: 16px;
+      border-bottom: 1px solid #ddd;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .contact-container {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+   <header>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="destination.html">Destination</a></li>
+        <li><a href="#">Bookings</a></li>
+        <li><a href="#">Contact Us</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <div class="contact-container">
+    <!-- Contact Form -->
+    <div class="contact-form">
+      <h2>Send Us a Message</h2>
+      <form action="mailto:vigneshwart010107@gmail.com" method="post" enctype="text/plain">
+        <label for="name">Your Name</label>
+        <input type="text" id="name" name="name" required>
+
+        <label for="email">Your Email</label>
+        <input type="email" id="email" name="email" required>
+
+        <label for="message">Your Message</label>
+        <textarea id="message" name="message" rows="6" required></textarea>
+
+        <button type="submit">Send Message</button>
+      </form>
+    </div>
+
+    <!-- Emergency Numbers -->
+    <div class="emergency-box">
+      <h2>Emergency Contacts</h2>
+      <ul>
+        <li><strong>Ambulance:</strong> 102</li>
+        <li><strong>Police:</strong> 100</li>
+        <li><strong>Fire Service:</strong> 101</li>
+        <li><strong>Tourist Helpdesk:</strong> +91-9431111111</li>
+      </ul>
+    </div>
+  </div>
+</body>
+</html>

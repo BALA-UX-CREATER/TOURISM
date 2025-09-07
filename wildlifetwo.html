@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dalam wildlife sanctuary</title>
+</head>
+<style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Roboto', sans-serif;
+      color: white;
+      background: url('templebg.jpg') no-repeat center center fixed;
+      background-size:cover;   
+    }
+
+    /* Navbar */
+    header {
+      background: rgba(0, 0, 0, 0.5);
+      padding: 1rem 0; /* Adjusted padding for better fit with language selector */
+      position: sticky;
+      top: 0;
+      z-index: 1000; /* Added z-index to ensure dropdown is on top */
+    }
+
+    nav ul {
+      display: flex;
+      justify-content: center;
+      align-items: center; /* Aligned items vertically */
+      list-style: none;
+      gap: 20px; /* Added gap for spacing */
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    nav ul li {
+      margin: 0 10px; /* Adjusted margin */
+    }
+
+    nav ul li a {
+      color: white;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    nav ul li a:hover {
+      color: #90ee90;
+    }
+
+    /* Custom Language Selector Styles */
+    .custom-language-selector {
+      position: relative;
+      display: inline-block;
+      margin-left: 20px; /* Adjust as needed for spacing */
+    }
+
+    .current-language {
+      background: #40a840;
+      color: white;
+      border: none;
+      padding: 8px 15px;
+      border-radius: 6px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 14px;
+    }
+
+    .current-language::after {
+      content: '▼'; /* Dropdown arrow */
+      font-size: 10px;
+      margin-left: 5px;
+    }
+
+    .language-dropdown {
+      display: none;
+      position: absolute;
+      background-color: #f9f9f9;
+      min-width: 160px;
+      box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+      z-index: 1;
+      border-radius: 6px;
+      overflow: hidden;
+      margin-top: 5px;
+    }
+
+    .language-dropdown a {
+      color: black;
+      padding: 12px 16px;
+      text-decoration: none;
+      display: block;
+      font-size: 14px;
+    }
+
+    .language-dropdown a:hover {
+      background-color: #f1f1f1;
+      color: #40a840;
+    }
+
+    .custom-language-selector.active .language-dropdown {
+      display: block;
+    }
+
+    .destination-layout {
+      max-width: 1200px;
+      margin: 40px auto;
+      padding: 20px;
+      display: grid;
+      grid-template-columns: 2fr 1fr; /* left big, right small */
+      gap: 30px;
+    }
+
+    /* Left side */
+    .left-section h2 {
+      font-size: 28px;
+      margin-bottom: 10px;
+      color: #40a840;
+    }
+
+    .left-section p {
+      font-size: 16px;
+      line-height: 1.6;
+      margin-bottom: 20px;
+    }
+
+    .info-box {
+      background: rgba(255,255,255,0.95);
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    .info-box h3 {
+      margin-bottom: 12px;
+      color: #333;
+    }
+
+    .info-box ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .info-box ul li {
+      padding: 6px 0;
+      border-bottom: 1px solid #ddd; /* Changed color for better visibility */
+      font-size: 15px;
+      color: #333;
+    }
+
+    .info-box ul li strong {
+      color: #444;
+      margin-right: 6px;
+    }
+
+    /* Right side */
+    .right-section img {
+      width: 100%;
+      height: 250px;
+      border-radius: 12px;
+      object-fit: cover;
+      margin-bottom: 20px;
+      border: 1px solid #ddd;
+    }
+
+    .right-section iframe {
+      width: 100%;
+      height: 250px;
+      border-radius: 12px;
+      border: 1px solid #ddd;
+    }
+</style>
+<body>
+     <header>
+    <nav>
+      <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Destination</a></li>
+        <li><a href="#">Bookings</a></li>
+        <li><a href="#">Contact Us</a></li>
+        <li class="language-option">
+          <div class="custom-language-selector" id="customLangSelector">
+            <button class="current-language" onclick="toggleLanguageDropdown()">
+              <span id="selectedLangText">English</span>
+            </button>
+            <div class="language-dropdown">
+              <a href="#" data-lang="en" onclick="changeLanguage('en', 'English')">English</a>
+              <a href="#" data-lang="hi" onclick="changeLanguage('hi', 'Hindi')">Hindi</a>
+              <a href="#" data-lang="or" onclick="changeLanguage('or', 'Odia')">Odia</a>
+              <a href="#" data-lang="mr" onclick="changeLanguage('mr', 'Marathi')">Marathi</a>
+              <!-- Add more languages as needed -->
+            </div>
+          </div>
+        </li>
+      </ul>
+    </nav>
+  </header>
+  <div>
+    <section class="destination-layout">
+    <!-- Left section -->
+    <div class="left-section">
+      <h2 data-translate="dalma_title">Dalam wildlife sanctuary</h2>
+      <p data-translate="dalma_description">
+        Dalma Wildlife Sanctuary, located near Jamshedpur, is well-known for its majestic wild elephants. 🐘
+        Spread across beautiful hills and dense forests, it offers a refreshing escape into nature. 🌿
+        The sanctuary is home to leopards, barking deer, sloth bears, porcupines, and many rare bird species. 🦅
+        It also provides thrilling trekking trails and panoramic views for adventure enthusiasts. ⛰️
+        With its rich biodiversity and serene environment, Dalma is a must-visit for wildlife and nature lovers. 🌄
+      </p>
+
+      <div class="info-box">
+        <h3 data-translate="travel_info_title">Travel Information</h3>
+        <ul>
+          <li data-translate="location_info"><strong>Location:</strong> Tatanagar Railway Station or Mango Bus Stand → Dalam wildlife sanctuary</li>
+          <li data-translate="hotels_info"><strong>Hotels:</strong> Vivanta Jamshedpur, HOTEL NH HILLS, The Wave International</li>
+          <li data-translate="transport_info"><strong>Transport:</strong> Bus, Taxi, Auto available</li>
+          <li data-translate="season_info"><strong>Season:</strong> November – March</li>
+          <li data-translate="guides_info"><strong>Guides:</strong> Local guides available</li>
+          <li data-translate="emergency_info"><strong>Emergency:</strong> 🚓 100 – Police, 🚑 108 – Ambulance, 🔥 101 – Fire Service</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Right section -->
+    <div class="right-section">
+      <img src="./image/Dalam wildlife sanctuary.jpg" alt="Destination Photo">
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3675.454713964835!2d86.20352777453618!3d22.89659322101919!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39f5e05456f688c9%3A0x2dfa7d14fef4da3e!2sDalma%20Wildlife%20Sanctuary!5e0!3m2!1sen!2sin!4v1757192489871!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+  </section>
+  </div>
+
+  <script>
+    // Simple toggle for the dropdown
+    function toggleLanguageDropdown() {
+      document.getElementById("customLangSelector").classList.toggle("active");
+    }
+
+    // Close the dropdown if the user clicks outside of it
+    window.onclick = function(event) {
+      if (!event.target.matches('.current-language') && !event.target.matches('#selectedLangText')) {
+        var dropdowns = document.getElementsByClassName("custom-language-selector");
+        for (var i = 0; i < dropdowns.length; i++) {
+          var openDropdown = dropdowns[i];
+          if (openDropdown.classList.contains('active')) {
+            openDropdown.classList.remove('active');
+          }
+        }
+      }
+    }
+
+    const translations = {
+      en: {
+        dalma_title: "Dalam wildlife sanctuary",
+        dalma_description: "Dalma Wildlife Sanctuary, located near Jamshedpur, is well-known for its majestic wild elephants. 🐘 Spread across beautiful hills and dense forests, it offers a refreshing escape into nature. 🌿 The sanctuary is home to leopards, barking deer, sloth bears, porcupines, and many rare bird species. 🦅 It also provides thrilling trekking trails and panoramic views for adventure enthusiasts. ⛰️ With its rich biodiversity and serene environment, Dalma is a must-visit for wildlife and nature lovers. 🌄",
+        travel_info_title: "Travel Information",
+        location_info: "<strong>Location:</strong> Tatanagar Railway Station or Mango Bus Stand → Dalam wildlife sanctuary",
+        hotels_info: "<strong>Hotels:</strong> Vivanta Jamshedpur, HOTEL NH HILLS, The Wave International",
+        transport_info: "<strong>Transport:</strong> Bus, Taxi, Auto available",
+        season_info: "<strong>Season:</strong> November – March",
+        guides_info: "<strong>Guides:</strong> Local guides available",
+        emergency_info: "<strong>Emergency:</strong> 🚓 100 – Police, 🚑 108 – Ambulance, 🔥 101 – Fire Service"
+      },
+      hi: {
+        dalma_title: "दलमा वन्यजीव अभयारण्य",
+        dalma_description: "जमशेदपुर के पास स्थित दलमा वन्यजीव अभयारण्य, अपने राजसी जंगली हाथियों के लिए प्रसिद्ध है। 🐘 सुंदर पहाड़ियों और घने जंगलों में फैला, यह प्रकृति में एक ताज़ा पलायन प्रदान करता है। 🌿 अभयारण्य तेंदुओं, भौंकने वाले हिरणों, स्लॉथ भालू, साही और कई दुर्लभ पक्षी प्रजातियों का घर है। 🦅 यह साहसिक उत्साही लोगों के लिए रोमांचक ट्रेकिंग मार्ग और मनोरम दृश्य भी प्रदान करता है। ⛰️ अपनी समृद्ध जैव विविधता और शांत वातावरण के साथ, दलमा वन्यजीव और प्रकृति प्रेमियों के लिए एक अवश्य घूमने योग्य स्थान है। 🌄",
+        travel_info_title: "यात्रा जानकारी",
+        location_info: "<strong>स्थान:</strong> टाटानगर रेलवे स्टेशन या मैंगो बस स्टैंड → दलमा वन्यजीव अभयारण्य",
+        hotels_info: "<strong>होटल:</strong> विवान्ता जमशेदपुर, होटल एनएच हिल्स, द वेव इंटरनेशनल",
+        transport_info: "<strong>परिवहन:</strong> बस, टैक्सी, ऑटो उपलब्ध",
+        season_info: "<strong>मौसम:</strong> नवंबर – मार्च",
+        guides_info: "<strong>गाइड:</strong> स्थानीय गाइड उपलब्ध",
+        emergency_info: "<strong>आपातकालीन:</strong> 🚓 100 – पुलिस, 🚑 108 – एम्बुलेंस, 🔥 101 – फायर सर्विस"
+      },
+      or: {
+        dalma_title: "ଦଲମା ବନ୍ୟଜୀବ ଅଭୟାରଣ୍ୟ",
+        dalma_description: "ଜାମସେଦପୁର ନିକଟରେ ଅବସ୍ଥିତ ଦଲମା ବନ୍ୟଜୀବ ଅଭୟାରଣ୍ୟ, ଏହାର ଭବ୍ୟ ବଣୁଆ ହାତୀମାନଙ୍କ ପାଇଁ ଜଣାଶୁଣା। 🐘 ସୁନ୍ଦର ପାହାଡ ଏବଂ ଘଞ୍ଚ ଜଙ୍ଗଲରେ ବ୍ୟାପିଥିବା ଏହା ପ୍ରକୃତିକୁ ଏକ ସତେଜ ପଳାୟନ ପ୍ରଦାନ କରେ। 🌿 ଏହି ଅଭୟାରଣ୍ୟ ଚିତାବାଘ, ଭୋକିଲା ହରିଣ, ସ୍ଲୋଥ୍ ଭାଲୁ, କଣ୍ଟାବୃଷି, ଏବଂ ଅନେକ ବିରଳ ପକ୍ଷୀ ପ୍ରଜାତିର ଘର। 🦅 ଏହା ଦୁଃସାହସିକ ଉତ୍ସାହୀମାନଙ୍କ ପାଇଁ ରୋମାଞ୍ଚକ ଟ୍ରେକିଂ ମାର୍ଗ ଏବଂ ମନୋରମ ଦୃଶ୍ୟ ମଧ୍ୟ ପ୍ରଦାନ କରେ। ⛰️ ଏହାର ସମୃଦ୍ଧ ଜୈବ ବିବିଧତା ଏବଂ ଶାନ୍ତ ପରିବେଶ ସହିତ, ଦଲମା ବନ୍ୟଜୀବ ଏବଂ ପ୍ରକୃତି ପ୍ରେମୀଙ୍କ ପାଇଁ ଏକ ଅବଶ୍ୟ ପରିଦର୍ଶନୀୟ ସ୍ଥାନ। 🌄",
+        travel_info_title: "ଯାତ୍ରା ସୂଚନା",
+        location_info: "<strong>ସ୍ଥାନ:</strong> ଟାଟାନଗର ରେଳ ଷ୍ଟେସନ କିମ୍ବା ମାଙ୍ଗୋ ବସ୍ ଷ୍ଟାଣ୍ଡ → ଦଲମା ବନ୍ୟଜୀବ ଅଭୟାରଣ୍ୟ",
+        hotels_info: "<strong>ହୋଟେଲ୍:</strong> ଭିଭାନ୍ତା ଜାମସେଦପୁର, ହୋଟେଲ୍ ଏନ୍ଏଚ୍ ହିଲ୍ସ, ଦ ୱେଭ୍ ଇଣ୍ଟରନ୍ୟାସନାଲ୍",
+        transport_info: "<strong>ପରିବହନ:</strong> ବସ୍, ଟାକ୍ସି, ଅଟୋ ଉପଲବ୍ଧ",
+        season_info: "<strong>ଋତୁ:</strong> ନଭେମ୍ବର – ମାର୍ଚ୍ଚ",
+        guides_info: "<strong>ଗାଇଡ୍:</strong> ସ୍ଥାନୀୟ ଗାଇଡ୍ ଉପଲବ୍ଧ",
+        emergency_info: "<strong>ଜରୁରୀକାଳୀନ:</strong> 🚓 100 – ପୋଲିସ୍, 🚑 108 – ଆମ୍ବୁଲାନ୍ସ, 🔥 101 – ଅଗ୍ନିଶମ ସେବା"
+      },
+      mr: {
+        dalma_title: "दल्मा वन्यजीव अभयारण्य",
+        dalma_description: "जमशेदपूरजवळ असलेले दलमा वन्यजीव अभयारण्य, त्याच्या भव्य जंगली हत्तींसाठी प्रसिद्ध आहे. 🐘 सुंदर टेकड्या आणि घनदाट जंगलांमध्ये पसरलेले, ते निसर्गात एक ताजेतवाने सुटका प्रदान करते. 🌿 हे अभयारण्य बिबट्या, भुंकणारे हरीण, आळशी अस्वल, साळींदर आणि अनेक दुर्मिळ पक्ष्यांच्या प्रजातींचे घर आहे. 🦅 हे साहसी उत्साही लोकांसाठी रोमांचक ट्रेकिंग मार्ग आणि विहंगम दृश्ये देखील प्रदान करते. ⛰️ त्याच्या समृद्ध जैवविविधता आणि शांत वातावरणासह, दलमा वन्यजीव आणि निसर्गप्रेमींसाठी एक आवर्जून भेट देण्यासारखे ठिकाण आहे. 🌄",
+        travel_info_title: "प्रवास माहिती",
+        location_info: "<strong>स्थान:</strong> टाटानगर रेल्वे स्टेशन किंवा आंबो बस स्टँड → दलमा वन्यजीव अभयारण्य",
+        hotels_info: "<strong>हॉटेल:</strong> विवान्ता जमशेदपूर, हॉटेल एनएच हिल्स, द वेव्ह इंटरनॅशनल",
+        transport_info: "<strong>वाहतूक:</strong> बस, टॅक्सी, ऑटो उपलब्ध",
+        season_info: "<strong>हंगाम:</strong> नोव्हेंबर – मार्च",
+        guides_info: "<strong>गाईड्स:</strong> स्थानिक गाईड्स उपलब्ध",
+        emergency_info: "<strong>आपत्कालीन:</strong> 🚓 100 – पोलीस, 🚑 108 – ॲम्ब्युलन्स, 🔥 101 – अग्निशमन सेवा"
+      }
+    };
+
+    function changeLanguage(langCode, langName) {
+      document.getElementById("selectedLangText").innerText = langName;
+      // Close dropdown
+      document.getElementById("customLangSelector").classList.remove("active");
+
+      // Apply translations
+      const elementsToTranslate = document.querySelectorAll('[data-translate]');
+      elementsToTranslate.forEach(element => {
+        const key = element.getAttribute('data-translate');
+        if (translations[langCode] && translations[langCode][key]) {
+          element.innerHTML = translations[langCode][key];
+        }
+      });
+
+      // Update the page's lang attribute
+      document.documentElement.lang = langCode;
+    }
+
+    // Set initial language on load (e.g., English)
+    document.addEventListener('DOMContentLoaded', () => {
+      changeLanguage('en', 'English');
+    });
+  </script>
+</body>
+</html>
